@@ -16,5 +16,26 @@ namespace project3her
         {
             InitializeComponent();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Datavisualisatie1 dv1 = new Datavisualisatie1();
+            dv1.Show();
+            this.Hide();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Datavisualisatie2 dv2 = new Datavisualisatie2();
+            dv2.Show();
+            this.Hide();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Datavisualisatie3 dv3 = new Datavisualisatie3();
+            dv3.Show();
+            this.Hide();
+        }
     }
 }

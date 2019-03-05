@@ -46,6 +46,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Datavisualisatie1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Datavisualisatie1.Designer.cs">
+      <DependentUpon>Datavisualisatie1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Datavisualisatie2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Datavisualisatie2.Designer.cs">
+      <DependentUpon>Datavisualisatie2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Datavisualisatie3.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Datavisualisatie3.Designer.cs">
+      <DependentUpon>Datavisualisatie3.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -54,6 +72,15 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Datavisualisatie1.resx">
+      <DependentUpon>Datavisualisatie1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Datavisualisatie2.resx">
+      <DependentUpon>Datavisualisatie2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Datavisualisatie3.resx">
+      <DependentUpon>Datavisualisatie3.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
