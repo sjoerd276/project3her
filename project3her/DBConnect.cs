@@ -35,15 +35,15 @@ namespace project3her
             connection = new MySqlConnection(connectionString);
         }
 
-        public bool updateDatabase()
-        {
-            OpenConnection();
-            string script = File.ReadAllText(@"project3.sql");
-            MySqlCommand cmd = new MySqlCommand(script, connection);
-            cmd.ExecuteNonQuery();
-            CloseConnection();
-            return true;
-        }
+        //public bool updateDatabase() // still needed?
+        //{
+        //    OpenConnection();
+        //    string script = File.ReadAllText(@"project3.sql");
+        //    MySqlCommand cmd = new MySqlCommand(script, connection);
+        //    cmd.ExecuteNonQuery();
+        //    CloseConnection();
+        //    return true;
+        //}
 
         //open connection to database
         private bool OpenConnection()
@@ -101,7 +101,6 @@ namespace project3her
             public int Count { get; set; }
             public int TempGem { get; set; }
         }
-
 
         public List<CountTemp> DBselect(string passedQuery)
         {
