@@ -32,7 +32,7 @@ namespace project3her
             string query = "SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011) AS count1,(SELECT COUNT(Voorval_nummer)FROM bikebike_theft) AS count2 FROM dual";
 
 
-            
+
 
             DataTable dt = GetData(query);
 
@@ -53,7 +53,7 @@ namespace project3her
             string uid = "project3";
             string password = "project3";
             string constr = "SERVER=" + server + ";" + "DATABASE=" + database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";";
-            
+
             using (MySqlConnection con = new MySqlConnection(constr))
             {
                 using (MySqlDataAdapter sda = new MySqlDataAdapter(query, con))
@@ -67,15 +67,15 @@ namespace project3her
 
         private void comboBoxJaar_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(comboBoxJaar != null &&comboBoxJaar.Text.ToString()!="All")
+            if (comboBoxJaar != null && comboBoxJaar.Text.ToString() != "All")
             {
                 chart1.Series["Straatroof"].Points.Clear();
                 chart1.Series["Fietsdiefstal"].Points.Clear();
 
 
                 string Filter = ((string)comboBoxJaar.SelectedItem);
-                
-                
+
+
                 string query = "SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011 WHERE dagsoort ='" + comboBoxJaar.Text.ToString() + "') AS count1,(SELECT COUNT(Voorval_nummer)FROM bikebike_theft WHERE Begin_dagsoort ='" + comboBoxJaar.Text.ToString() + "') AS count2 FROM dual";
 
 
@@ -123,21 +123,39 @@ namespace project3her
 
         private void button2_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void comboDagdeel_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (comboDagdeel != null && comboDagdeel.Text.ToString() != "All" && comboBoxJaar.Text.ToString() != "All")
             {
+                chart1.Series["Straatroof"].Points.Clear();
+                chart1.Series["Fietsdiefstal"].Points.Clear();
 
+
+                string Filter = ((string)comboBoxJaar.SelectedItem);
+
+
+                string query = "SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011 WHERE dagsoort ='" + comboBoxJaar.Text.ToString() + "' AND dagdeel ='" + comboDagdeel.Text.ToString() + "') AS count1,(SELECT COUNT(Voorval_nummer)FROM bikebike_theft WHERE Begin_dagsoort ='" + comboBoxJaar.Text.ToString() + "'AND Gemiddelde_dagdeel ='" + comboDagdeel.Text.ToString() + "') AS count2 FROM dual";
+
+
+                DataTable dt = GetData(query);
+
+                chart1.DataSource = dt;
+
+
+                chart1.Series["Straatroof"].YValueMembers = "count1";
+                chart1.Series["Fietsdiefstal"].YValueMembers = "count2";
             }
             if (comboDagdeel != null && comboDagdeel.Text.ToString() != "All" && comboBoxJaar.Text.ToString() == "All")
             {
                 chart1.Series["Straatroof"].Points.Clear();
                 chart1.Series["Fietsdiefstal"].Points.Clear();
 
+
                 string query = "SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011 WHERE dagdeel ='" + comboDagdeel.Text.ToString() + "') AS count1,(SELECT COUNT(Voorval_nummer)FROM bikebike_theft WHERE Gemiddelde_dagdeel ='" + comboDagdeel.Text.ToString() + "') AS count2 FROM dual";
+
                 DataTable dt = GetData(query);
 
                 chart1.DataSource = dt;
@@ -148,14 +166,16 @@ namespace project3her
             }
             if (comboDagdeel != null && comboDagdeel.Text.ToString() == "All" && comboBoxJaar.Text.ToString() != "All")
             {
-
-            }
-            if (comboDagdeel != null && comboDagdeel.Text.ToString() == "All" && comboBoxJaar.Text.ToString() == "All")
-            {
                 chart1.Series["Straatroof"].Points.Clear();
                 chart1.Series["Fietsdiefstal"].Points.Clear();
 
-                string query = "SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011 WHERE dagdeel ='" + comboDagdeel.Text.ToString() + "') AS count1,(SELECT COUNT(Voorval_nummer)FROM bikebike_theft WHERE Gemiddelde_dagdeel ='" + comboDagdeel.Text.ToString() + "') AS count2 FROM dual";
+
+                string Filter = ((string)comboBoxJaar.SelectedItem);
+
+                string query = "SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011 WHERE dagsoort ='" + comboBoxJaar.Text.ToString() + "') AS count1,(SELECT COUNT(Voorval_nummer)FROM bikebike_theft WHERE Begin_dagsoort ='" + comboBoxJaar.Text.ToString() + "') AS count2 FROM dual";
+
+
+
                 DataTable dt = GetData(query);
 
                 chart1.DataSource = dt;
@@ -164,6 +184,25 @@ namespace project3her
                 chart1.Series["Straatroof"].YValueMembers = "count1";
                 chart1.Series["Fietsdiefstal"].YValueMembers = "count2";
             }
+            if (comboDagdeel != null && comboDagdeel.Text.ToString() == "All" && comboBoxJaar.Text.ToString() == "All")
+            {
+                chart1.Series["Straatroof"].Points.Clear();
+                chart1.Series["Fietsdiefstal"].Points.Clear();
+
+                string query = "SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011) AS count1,(SELECT COUNT(Voorval_nummer)FROM bikebike_theft) AS count2 FROM dual";
+                DataTable dt = GetData(query);
+
+                chart1.DataSource = dt;
+
+
+                chart1.Series["Straatroof"].YValueMembers = "count1";
+                chart1.Series["Fietsdiefstal"].YValueMembers = "count2";
+            }
+
+        }
+
+        private void chart1_Click(object sender, EventArgs e)
+        {
 
         }
     }
