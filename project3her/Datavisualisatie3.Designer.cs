@@ -35,7 +35,9 @@
             this.menubutton = new System.Windows.Forms.Button();
             this.chart3 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.filterpanel = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
             this.jaarfilter = new System.Windows.Forms.ComboBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.chart3)).BeginInit();
             this.filterpanel.SuspendLayout();
             this.SuspendLayout();
@@ -63,10 +65,10 @@
             this.chart3.Name = "chart3";
             series1.ChartArea = "ChartArea1";
             series1.Legend = "Legend1";
-            series1.Name = "Straatroof";
+            series1.Name = "Misdaden";
             series2.ChartArea = "ChartArea1";
             series2.Legend = "Legend1";
-            series2.Name = "Fietsdiefstal";
+            series2.Name = "Populatie";
             this.chart3.Series.Add(series1);
             this.chart3.Series.Add(series2);
             this.chart3.Size = new System.Drawing.Size(760, 526);
@@ -76,12 +78,25 @@
             // filterpanel
             // 
             this.filterpanel.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.filterpanel.Controls.Add(this.comboBox1);
+            this.filterpanel.Controls.Add(this.label1);
             this.filterpanel.Controls.Add(this.jaarfilter);
             this.filterpanel.Controls.Add(this.menubutton);
             this.filterpanel.Location = new System.Drawing.Point(0, 0);
             this.filterpanel.Name = "filterpanel";
             this.filterpanel.Size = new System.Drawing.Size(200, 555);
             this.filterpanel.TabIndex = 3;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(77, 120);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(46, 17);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Filters";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.label1.Click += new System.EventHandler(this.Label1_Click);
             // 
             // jaarfilter
             // 
@@ -174,10 +189,24 @@
             "Zuiderpark",
             "Zuidplein",
             "Zuidwijk"});
-            this.jaarfilter.Location = new System.Drawing.Point(25, 175);
+            this.jaarfilter.Location = new System.Drawing.Point(25, 150);
             this.jaarfilter.Name = "jaarfilter";
             this.jaarfilter.Size = new System.Drawing.Size(150, 24);
             this.jaarfilter.TabIndex = 1;
+            this.jaarfilter.Text = "Buurt";
+            this.jaarfilter.SelectedIndexChanged += new System.EventHandler(this.Jaarfilter_SelectedIndexChanged);
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "2011",
+            "2012"});
+            this.comboBox1.Location = new System.Drawing.Point(25, 200);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(150, 24);
+            this.comboBox1.TabIndex = 3;
+            this.comboBox1.Text = "Jaar";
             // 
             // Datavisualisatie3
             // 
@@ -192,6 +221,7 @@
             this.Load += new System.EventHandler(this.Datavisualisatie3_Load);
             ((System.ComponentModel.ISupportInitialize)(this.chart3)).EndInit();
             this.filterpanel.ResumeLayout(false);
+            this.filterpanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -202,5 +232,7 @@
         private System.Windows.Forms.DataVisualization.Charting.Chart chart3;
         private System.Windows.Forms.Panel filterpanel;
         private System.Windows.Forms.ComboBox jaarfilter;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }

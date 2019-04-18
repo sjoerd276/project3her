@@ -28,7 +28,7 @@ namespace project3her
         }
         private void Datavisualisatie3_Load(object sender, EventArgs e)
         {
-            string query = "SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011) AS count1,(SELECT COUNT(Voorval_nummer)FROM bikebike_theft) AS count2 FROM dual";
+            string query = "SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011) + (SELECT COUNT(Voorval_nummer)FROM bikebike_theft) AS count1,(SELECT COUNT(Voorval_nummer)FROM bikebike_theft) AS count2 FROM dual";
 
 
 
@@ -38,10 +38,10 @@ namespace project3her
             chart3.DataSource = dt;
 
 
-            chart3.Series["Straatroof"].YValueMembers = "count1";
-            chart3.Series["Fietsdiefstal"].YValueMembers = "count2";
+            chart3.Series["Misdaden"].YValueMembers = "count1";
+            chart3.Series["Populatie"].YValueMembers = "count2";
 
-            chart3.Titles.Add("Aantal misdaden tegenover populatie");
+            chart3.Titles.Add("Alle Buurten");
 
         }
         private static DataTable GetData(string query)
@@ -63,6 +63,14 @@ namespace project3her
             }
         }
 
+        private void Label1_Click(object sender, EventArgs e)
+        {
 
+        }
+
+        private void Jaarfilter_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
