@@ -128,13 +128,41 @@ namespace project3her
 
         private void comboDagdeel_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (comboDagdeel != null && comboDagdeel.Text.ToString() != "All")
+            if (comboDagdeel != null && comboDagdeel.Text.ToString() != "All" && comboBoxJaar.Text.ToString() != "All")
             {
 
             }
-            if (comboDagdeel != null && comboDagdeel.Text.ToString() == "All")
+            if (comboDagdeel != null && comboDagdeel.Text.ToString() != "All" && comboBoxJaar.Text.ToString() == "All")
+            {
+                chart1.Series["Straatroof"].Points.Clear();
+                chart1.Series["Fietsdiefstal"].Points.Clear();
+
+                string query = "SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011 WHERE dagdeel ='" + comboDagdeel.Text.ToString() + "') AS count1,(SELECT COUNT(Voorval_nummer)FROM bikebike_theft WHERE Gemiddelde_dagdeel ='" + comboDagdeel.Text.ToString() + "') AS count2 FROM dual";
+                DataTable dt = GetData(query);
+
+                chart1.DataSource = dt;
+
+
+                chart1.Series["Straatroof"].YValueMembers = "count1";
+                chart1.Series["Fietsdiefstal"].YValueMembers = "count2";
+            }
+            if (comboDagdeel != null && comboDagdeel.Text.ToString() == "All" && comboBoxJaar.Text.ToString() != "All")
             {
 
+            }
+            if (comboDagdeel != null && comboDagdeel.Text.ToString() == "All" && comboBoxJaar.Text.ToString() == "All")
+            {
+                chart1.Series["Straatroof"].Points.Clear();
+                chart1.Series["Fietsdiefstal"].Points.Clear();
+
+                string query = "SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011 WHERE dagdeel ='" + comboDagdeel.Text.ToString() + "') AS count1,(SELECT COUNT(Voorval_nummer)FROM bikebike_theft WHERE Gemiddelde_dagdeel ='" + comboDagdeel.Text.ToString() + "') AS count2 FROM dual";
+                DataTable dt = GetData(query);
+
+                chart1.DataSource = dt;
+
+
+                chart1.Series["Straatroof"].YValueMembers = "count1";
+                chart1.Series["Fietsdiefstal"].YValueMembers = "count2";
             }
 
         }
