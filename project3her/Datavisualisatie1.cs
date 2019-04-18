@@ -45,25 +45,22 @@ namespace project3her
                 }
             }
         }
-        
-        private void chart1_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void Datavisualisatie1_Load(object sender, EventArgs e)
         {
-            string query = "SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011) AS count1,(SELECT COUNT(Voorval_nummer)FROM bikebike_theft) AS count2 FROM dual";
+            string query = "SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011) + (SELECT COUNT(Voorval_nummer)FROM bikebike_theft) AS count1, (SELECT COUNT(Voorval_nummer)FROM bikebike_theft) AS count2";
             
             DataTable dt = GetData(query);
 
             chart1.DataSource = dt;
 
 
-            chart1.Series["Straatroof"].YValueMembers = "count1";
+            chart1.Series["Totaal misdaden"].YValueMembers = "count1";
             chart1.Series["Fietsdiefstal"].YValueMembers = "count2";
 
             chart1.Titles.Add("Diefstal");
         }
+
+        private void chart1_Click(object sender, EventArgs e) { }
     }
 }
