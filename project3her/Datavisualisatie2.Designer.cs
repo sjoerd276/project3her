@@ -42,10 +42,9 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(16, 15);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button1.Location = new System.Drawing.Point(12, 12);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(100, 28);
+            this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 0;
             this.button1.Text = "Menu";
             this.button1.UseVisualStyleBackColor = true;
@@ -57,8 +56,7 @@
             this.chart1.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
             this.chart1.Legends.Add(legend1);
-            this.chart1.Location = new System.Drawing.Point(339, 89);
-            this.chart1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chart1.Location = new System.Drawing.Point(254, 72);
             this.chart1.Name = "chart1";
             series1.ChartArea = "ChartArea1";
             series1.Legend = "Legend1";
@@ -68,7 +66,7 @@
             series2.Name = "Fietsdiefstal";
             this.chart1.Series.Add(series1);
             this.chart1.Series.Add(series2);
-            this.chart1.Size = new System.Drawing.Size(400, 369);
+            this.chart1.Size = new System.Drawing.Size(300, 300);
             this.chart1.TabIndex = 1;
             this.chart1.Text = "chart1";
             // 
@@ -84,19 +82,19 @@
             "ZA",
             "ZO",
             "All"});
-            this.comboBoxJaar.Location = new System.Drawing.Point(889, 119);
-            this.comboBoxJaar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.comboBoxJaar.Location = new System.Drawing.Point(667, 97);
+            this.comboBoxJaar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.comboBoxJaar.Name = "comboBoxJaar";
-            this.comboBoxJaar.Size = new System.Drawing.Size(108, 24);
+            this.comboBoxJaar.Size = new System.Drawing.Size(82, 21);
             this.comboBoxJaar.TabIndex = 2;
             this.comboBoxJaar.SelectedIndexChanged += new System.EventHandler(this.comboBoxJaar_SelectedIndexChanged);
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(987, 245);
-            this.button2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button2.Location = new System.Drawing.Point(740, 199);
+            this.button2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(67, 18);
+            this.button2.Size = new System.Drawing.Size(50, 15);
             this.button2.TabIndex = 3;
             this.button2.Text = "button2";
             this.button2.UseVisualStyleBackColor = true;
@@ -105,24 +103,22 @@
             // comboDagdeel
             // 
             this.comboDagdeel.FormattingEnabled = true;
-            this.comboDagdeel.Location = new System.Drawing.Point(889, 165);
-            this.comboDagdeel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboDagdeel.Location = new System.Drawing.Point(667, 134);
             this.comboDagdeel.Name = "comboDagdeel";
-            this.comboDagdeel.Size = new System.Drawing.Size(160, 24);
+            this.comboDagdeel.Size = new System.Drawing.Size(121, 21);
             this.comboDagdeel.TabIndex = 4;
             this.comboDagdeel.SelectedIndexChanged += new System.EventHandler(this.comboDagdeel_SelectedIndexChanged);
             // 
             // Datavisualisatie2
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1067, 554);
+            this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.comboDagdeel);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.comboBoxJaar);
             this.Controls.Add(this.chart1);
             this.Controls.Add(this.button1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Datavisualisatie2";
             this.Text = "Datavisualisatie2";
             this.Load += new System.EventHandler(this.Datavisualisatie2_Load);

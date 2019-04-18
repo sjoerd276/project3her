@@ -7,9 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Configuration;
-using System.Windows.Forms.DataVisualization.Charting;
-using MySql.Data.MySqlClient;
 
 namespace project3her
 {
@@ -26,43 +23,5 @@ namespace project3her
             menu.Show();
             this.Close();
         }
-        private void Datavisualisatie3_Load(object sender, EventArgs e)
-        {
-            string query = "SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011) AS count1,(SELECT COUNT(Voorval_nummer)FROM bikebike_theft) AS count2 FROM dual";
-
-
-
-
-            DataTable dt = GetData(query);
-
-            chart3.DataSource = dt;
-
-
-            chart3.Series["Straatroof"].YValueMembers = "count1";
-            chart3.Series["Fietsdiefstal"].YValueMembers = "count2";
-
-            chart3.Titles.Add("Aantal misdaden tegenover populatie");
-
-        }
-        private static DataTable GetData(string query)
-        {
-            string server = "localhost";
-            string database = "project3";
-            string uid = "project3";
-            string password = "project3";
-            string constr = "SERVER=" + server + ";" + "DATABASE=" + database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";";
-            
-            using (MySqlConnection con = new MySqlConnection(constr))
-            {
-                using (MySqlDataAdapter sda = new MySqlDataAdapter(query, con))
-                {
-                    DataTable dt = new DataTable();
-                    sda.Fill(dt);
-                    return dt;
-                }
-            }
-        }
-
-
     }
 }
