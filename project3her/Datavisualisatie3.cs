@@ -28,10 +28,7 @@ namespace project3her
         }
         private void Datavisualisatie3_Load(object sender, EventArgs e)
         {
-            string query = "SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011) + (SELECT COUNT(Voorval_nummer)FROM bikebike_theft) AS count1,(SELECT SUM(aantal2011)FROM populatie) AS count2 FROM dual";
-
-
-
+            string query = "SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011) + (SELECT COUNT(Voorval_nummer)FROM fietsdiefstal) AS count1,(SELECT SUM(aantal2011)FROM populatie) AS count2 FROM dual";
 
             DataTable dt = GetData(query);
 
@@ -42,7 +39,9 @@ namespace project3her
             chart3.Series["Populatie"].YValueMembers = "count2";
 
             chart3.Titles.Add("Alle Buurten");
+            chart3.Titles.Add("2011");
 
+            //ratiotext.Text = (count1 / count2).ToString();
         }
         private static DataTable GetData(string query)
         {
@@ -65,14 +64,14 @@ namespace project3her
 
         private void Buurtfilter_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (buurtfilter != null && buurtfilter.Text.ToString() != "Alle buurten")
+            if (buurtfilter != null && buurtfilter.Text.ToString() != "Alle buurten" && jaarfilter.Text.ToString() == "2011")
             {
                 chart3.Series["Misdaden"].Points.Clear();
                 chart3.Series["Populatie"].Points.Clear();
 
-                string Filter = ((string)jaarfilter.SelectedItem);
+                string Filter = ((string)buurtfilter.SelectedItem);
 
-                string query = "SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011 WHERE Buurt = '" + buurtfilter.Text.ToString() + "') + (SELECT COUNT(Voorval_nummer)FROM bikebike_theft WHERE Buurt = '" + buurtfilter.Text.ToString() + "') AS count1,(SELECT SUM(aantal2011)FROM populatie WHERE Buurten = '" + buurtfilter.Text.ToString() + "') AS count2 FROM dual";
+                string query = "SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011 WHERE Buurt = '" + buurtfilter.Text.ToString() + "' AND Jaar = '" + jaarfilter.Text.ToString() + "') + (SELECT COUNT(Voorval_nummer)FROM fietsdiefstal WHERE Buurt = '" + buurtfilter.Text.ToString() + "' AND Gemiddelde_jaar = '" + jaarfilter.Text.ToString() + "') AS count1,(SELECT SUM(aantal2011)FROM populatie WHERE Buurten = '" + buurtfilter.Text.ToString() + "') AS count2 FROM dual";
 
                 DataTable dt = GetData(query);
 
@@ -83,17 +82,18 @@ namespace project3her
 
 
                 chart3.Titles.Clear();
-                chart3.Titles.Add("Aantal misdaden tegenover populatie");
-                chart3.Titles.Add(buurtfilter.Text.ToString());  
+                chart3.Titles.Add("Aantal misdaden tegenover populatie per buurt");
+                chart3.Titles.Add(buurtfilter.Text.ToString());
+                chart3.Titles.Add(jaarfilter.Text.ToString());
             }
-            if (buurtfilter != null && buurtfilter.Text.ToString() == "Alle Buurten")
+            if (buurtfilter != null && buurtfilter.Text.ToString() != "Alle buurten" && jaarfilter.Text.ToString() == "2012")
             {
                 chart3.Series["Misdaden"].Points.Clear();
                 chart3.Series["Populatie"].Points.Clear();
 
-                string Filter = ((string)jaarfilter.SelectedItem);
+                string Filter = ((string)buurtfilter.SelectedItem);
 
-                string query = "SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011) + (SELECT COUNT(Voorval_nummer)FROM bikebike_theft) AS count1,(SELECT SUM(aantal2011)FROM populatie) AS count2 FROM dual";
+                string query = "SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011 WHERE Buurt = '" + buurtfilter.Text.ToString() + "' AND Jaar = '" + jaarfilter.Text.ToString() + "') + (SELECT COUNT(Voorval_nummer)FROM fietsdiefstal WHERE Buurt = '" + buurtfilter.Text.ToString() + "' AND Gemiddelde_jaar = '" + jaarfilter.Text.ToString() + "') AS count1,(SELECT SUM(aantal2012)FROM populatie WHERE Buurten = '" + buurtfilter.Text.ToString() + "') AS count2 FROM dual";
 
                 DataTable dt = GetData(query);
 
@@ -104,15 +104,147 @@ namespace project3her
 
 
                 chart3.Titles.Clear();
-                chart3.Titles.Add("Aantal misdaden tegenover populatie");
+                chart3.Titles.Add("Aantal misdaden tegenover populatie per buurt");
+                chart3.Titles.Add(buurtfilter.Text.ToString());
+                chart3.Titles.Add(jaarfilter.Text.ToString());
+            }
+            if (buurtfilter.Text.ToString() == "Alle Buurten" && jaarfilter.Text.ToString() == "2011")
+            {
+                chart3.Series["Misdaden"].Points.Clear();
+                chart3.Series["Populatie"].Points.Clear();
+
+                string Filter = ((string)jaarfilter.SelectedItem);
+
+                string query = "SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011 WHERE Jaar = '" + jaarfilter.Text.ToString() + "') + (SELECT COUNT(Voorval_nummer)FROM fietsdiefstal WHERE Gemiddelde_jaar = '" + jaarfilter.Text.ToString() + "') AS count1,(SELECT SUM(aantal2011)FROM populatie) AS count2 FROM dual";
+
+                DataTable dt = GetData(query);
+
+                chart3.DataSource = dt;
+
+                chart3.Series["Misdaden"].YValueMembers = "count1";
+                chart3.Series["Populatie"].YValueMembers = "count2";
+
+
+                chart3.Titles.Clear();
+                chart3.Titles.Add("Aantal misdaden tegenover populatie per buurt");
                 chart3.Titles.Add("Alle buurten");
+                chart3.Titles.Add(jaarfilter.Text.ToString());
+            }
+            if (buurtfilter.Text.ToString() == "Alle Buurten" && jaarfilter.Text.ToString() == "2012")
+            {
+                chart3.Series["Misdaden"].Points.Clear();
+                chart3.Series["Populatie"].Points.Clear();
+
+                string Filter = ((string)jaarfilter.SelectedItem);
+
+                string query = "SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011 WHERE Jaar = '" + jaarfilter.Text.ToString() + "') + (SELECT COUNT(Voorval_nummer)FROM fietsdiefstal WHERE Gemiddelde_jaar = '" + jaarfilter.Text.ToString() + "') AS count1,(SELECT SUM(aantal2012)FROM populatie) AS count2 FROM dual";
+
+                DataTable dt = GetData(query);
+
+                chart3.DataSource = dt;
+
+                chart3.Series["Misdaden"].YValueMembers = "count1";
+                chart3.Series["Populatie"].YValueMembers = "count2";
+
+
+                chart3.Titles.Clear();
+                chart3.Titles.Add("Aantal misdaden tegenover populatie per buurt");
+                chart3.Titles.Add("Alle buurten");
+                chart3.Titles.Add(jaarfilter.Text.ToString());
             }
 
         }
 
         private void Jaarfilter_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (buurtfilter != null && buurtfilter.Text.ToString() != "Alle buurten" && jaarfilter.Text.ToString() == "2011")
+            {
+                chart3.Series["Misdaden"].Points.Clear();
+                chart3.Series["Populatie"].Points.Clear();
 
+                string Filter = ((string)buurtfilter.SelectedItem);
+
+                string query = "SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011 WHERE Buurt = '" + buurtfilter.Text.ToString() + "' AND Jaar = '" + jaarfilter.Text.ToString() + "') + (SELECT COUNT(Voorval_nummer)FROM fietsdiefstal WHERE Buurt = '" + buurtfilter.Text.ToString() + "' AND Gemiddelde_jaar = '" + jaarfilter.Text.ToString() + "') AS count1,(SELECT SUM(aantal2011)FROM populatie WHERE Buurten = '" + buurtfilter.Text.ToString() + "') AS count2 FROM dual";
+
+                DataTable dt = GetData(query);
+
+                chart3.DataSource = dt;
+
+                chart3.Series["Misdaden"].YValueMembers = "count1";
+                chart3.Series["Populatie"].YValueMembers = "count2";
+
+
+                chart3.Titles.Clear();
+                chart3.Titles.Add("Aantal misdaden tegenover populatie per buurt");
+                chart3.Titles.Add(buurtfilter.Text.ToString());
+                chart3.Titles.Add(jaarfilter.Text.ToString());
+            }
+            if (buurtfilter != null && buurtfilter.Text.ToString() != "Alle buurten" && jaarfilter.Text.ToString() == "2012")
+            {
+                chart3.Series["Misdaden"].Points.Clear();
+                chart3.Series["Populatie"].Points.Clear();
+
+                string Filter = ((string)buurtfilter.SelectedItem);
+
+                string query = "SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011 WHERE Buurt = '" + buurtfilter.Text.ToString() + "' AND Jaar = '" + jaarfilter.Text.ToString() + "') + (SELECT COUNT(Voorval_nummer)FROM fietsdiefstal WHERE Buurt = '" + buurtfilter.Text.ToString() + "' AND Gemiddelde_jaar = '" + jaarfilter.Text.ToString() + "') AS count1,(SELECT SUM(aantal2012)FROM populatie WHERE Buurten = '" + buurtfilter.Text.ToString() + "') AS count2 FROM dual";
+
+                DataTable dt = GetData(query);
+
+                chart3.DataSource = dt;
+
+                chart3.Series["Misdaden"].YValueMembers = "count1";
+                chart3.Series["Populatie"].YValueMembers = "count2";
+
+
+                chart3.Titles.Clear();
+                chart3.Titles.Add("Aantal misdaden tegenover populatie per buurt");
+                chart3.Titles.Add(buurtfilter.Text.ToString());
+                chart3.Titles.Add(jaarfilter.Text.ToString());
+            }
+            if (buurtfilter.Text.ToString() == "Alle Buurten" && jaarfilter.Text.ToString() == "2011")
+            {
+                chart3.Series["Misdaden"].Points.Clear();
+                chart3.Series["Populatie"].Points.Clear();
+
+                string Filter = ((string)jaarfilter.SelectedItem);
+
+                string query = "SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011 WHERE Jaar = '" + jaarfilter.Text.ToString() + "') + (SELECT COUNT(Voorval_nummer)FROM fietsdiefstal WHERE Gemiddelde_jaar = '" + jaarfilter.Text.ToString() + "') AS count1,(SELECT SUM(aantal2011)FROM populatie) AS count2 FROM dual";
+
+                DataTable dt = GetData(query);
+
+                chart3.DataSource = dt;
+
+                chart3.Series["Misdaden"].YValueMembers = "count1";
+                chart3.Series["Populatie"].YValueMembers = "count2";
+
+
+                chart3.Titles.Clear();
+                chart3.Titles.Add("Aantal misdaden tegenover populatie per buurt");
+                chart3.Titles.Add("Alle buurten");
+                chart3.Titles.Add(jaarfilter.Text.ToString());
+            }
+            if (buurtfilter.Text.ToString() == "Alle Buurten" && jaarfilter.Text.ToString() == "2012")
+            {
+                chart3.Series["Misdaden"].Points.Clear();
+                chart3.Series["Populatie"].Points.Clear();
+
+                string Filter = ((string)jaarfilter.SelectedItem);
+
+                string query = "SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011 WHERE Jaar = '" + jaarfilter.Text.ToString() + "') + (SELECT COUNT(Voorval_nummer)FROM fietsdiefstal WHERE Gemiddelde_jaar = '" + jaarfilter.Text.ToString() + "') AS count1,(SELECT SUM(aantal2012)FROM populatie) AS count2 FROM dual";
+
+                DataTable dt = GetData(query);
+
+                chart3.DataSource = dt;
+
+                chart3.Series["Misdaden"].YValueMembers = "count1";
+                chart3.Series["Populatie"].YValueMembers = "count2";
+
+
+                chart3.Titles.Clear();
+                chart3.Titles.Add("Aantal misdaden tegenover populatie per buurt");
+                chart3.Titles.Add("Alle buurten");
+                chart3.Titles.Add(jaarfilter.Text.ToString());
+            }
         }
     }
 }

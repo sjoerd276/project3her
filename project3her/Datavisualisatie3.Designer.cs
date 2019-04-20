@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
@@ -36,6 +37,7 @@
             this.menubutton = new System.Windows.Forms.Button();
             this.chart3 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.filterpanel = new System.Windows.Forms.Panel();
+            this.ratiotext = new System.Windows.Forms.TextBox();
             this.misdadengepleegd = new System.Windows.Forms.Label();
             this.voorelkeinwoner = new System.Windows.Forms.Label();
             this.jaarfilter = new System.Windows.Forms.ComboBox();
@@ -60,7 +62,9 @@
             // chart3
             // 
             chartArea1.Name = "ChartArea1";
+            chartArea2.Name = "ChartArea2";
             this.chart3.ChartAreas.Add(chartArea1);
+            this.chart3.ChartAreas.Add(chartArea2);
             this.chart3.DataSource = this.chart3.Annotations;
             legend1.Name = "Legend1";
             this.chart3.Legends.Add(legend1);
@@ -70,7 +74,7 @@
             series1.ChartArea = "ChartArea1";
             series1.Legend = "Legend1";
             series1.Name = "Misdaden";
-            series2.ChartArea = "ChartArea1";
+            series2.ChartArea = "ChartArea2";
             series2.Legend = "Legend1";
             series2.Name = "Populatie";
             this.chart3.Series.Add(series1);
@@ -78,7 +82,7 @@
             this.chart3.Size = new System.Drawing.Size(760, 526);
             this.chart3.TabIndex = 2;
             this.chart3.Text = "chart3";
-            title1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            title1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             title1.Name = "Aantal misdaden tegenover populatie";
             title1.Text = "Aantal misdaden tegenover populatie";
             this.chart3.Titles.Add(title1);
@@ -86,6 +90,7 @@
             // filterpanel
             // 
             this.filterpanel.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.filterpanel.Controls.Add(this.ratiotext);
             this.filterpanel.Controls.Add(this.misdadengepleegd);
             this.filterpanel.Controls.Add(this.voorelkeinwoner);
             this.filterpanel.Controls.Add(this.jaarfilter);
@@ -97,6 +102,16 @@
             this.filterpanel.Name = "filterpanel";
             this.filterpanel.Size = new System.Drawing.Size(250, 555);
             this.filterpanel.TabIndex = 3;
+            // 
+            // ratiotext
+            // 
+            this.ratiotext.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.ratiotext.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.ratiotext.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ratiotext.Location = new System.Drawing.Point(32, 420);
+            this.ratiotext.Name = "ratiotext";
+            this.ratiotext.Size = new System.Drawing.Size(189, 38);
+            this.ratiotext.TabIndex = 6;
             // 
             // misdadengepleegd
             // 
@@ -131,7 +146,7 @@
             this.jaarfilter.Name = "jaarfilter";
             this.jaarfilter.Size = new System.Drawing.Size(151, 24);
             this.jaarfilter.TabIndex = 3;
-            this.jaarfilter.Text = "Jaar";
+            this.jaarfilter.Text = "2011";
             this.jaarfilter.SelectedIndexChanged += new System.EventHandler(this.Jaarfilter_SelectedIndexChanged);
             // 
             // Filters
@@ -241,7 +256,7 @@
             this.buurtfilter.Name = "buurtfilter";
             this.buurtfilter.Size = new System.Drawing.Size(151, 24);
             this.buurtfilter.TabIndex = 1;
-            this.buurtfilter.Text = "Buurt";
+            this.buurtfilter.Text = "Alle Buurten";
             this.buurtfilter.SelectedIndexChanged += new System.EventHandler(this.Buurtfilter_SelectedIndexChanged);
             // 
             // Datavisualisatie3
@@ -272,5 +287,6 @@
         private System.Windows.Forms.ComboBox jaarfilter;
         private System.Windows.Forms.Label voorelkeinwoner;
         private System.Windows.Forms.Label misdadengepleegd;
+        private System.Windows.Forms.TextBox ratiotext;
     }
 }
