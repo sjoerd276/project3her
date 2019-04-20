@@ -29,7 +29,7 @@ namespace project3her
 
         private void Datavisualisatie2_Load(object sender, EventArgs e)
         {
-            string query = "SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011) AS count1,(SELECT COUNT(Voorval_nummer)FROM bikebike_theft) AS count2 FROM dual";
+            string query = "SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011) AS count1,(SELECT COUNT(Voorval_nummer)FROM fietsdiefstal) AS count2 FROM dual";
 
             DataTable dt = GetData(query);
 
@@ -70,7 +70,7 @@ namespace project3her
                 chart1.Series["Straatroof"].Points.Clear();
                 chart1.Series["Fietsdiefstal"].Points.Clear();
 
-                string query = "SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011) AS count1,(SELECT COUNT(Voorval_nummer)FROM bikebike_theft) AS count2 FROM dual";
+                string query = "SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011) AS count1,(SELECT COUNT(Voorval_nummer)FROM fietsdiefstal) AS count2 FROM dual";
                 DataTable dt = GetData(query);
 
                 chart1.DataSource = dt;
@@ -84,7 +84,7 @@ namespace project3her
                 chart1.Series["Straatroof"].Points.Clear();
                 chart1.Series["Fietsdiefstal"].Points.Clear();
 
-                string query = "SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011 WHERE dagsoort ='" + comboBoxDag.Text.ToString() + "' AND dagdeel ='" + comboDagdeel.Text.ToString() + "' AND Buurt LIKE'%" + comboBoxBuurt.Text.ToString() + "%') AS count1,(SELECT COUNT(Voorval_nummer)FROM bikebike_theft WHERE Begin_dagsoort ='" + comboBoxDag.Text.ToString() + "'AND Gemiddelde_dagdeel ='" + comboDagdeel.Text.ToString() + "' AND Buurt LIKE'%" + comboBoxBuurt.Text.ToString() + "%') AS count2 FROM dual";
+                string query = "SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011 WHERE dagsoort ='" + comboBoxDag.Text.ToString() + "' AND dagdeel ='" + comboDagdeel.Text.ToString() + "' AND Buurt LIKE'%" + comboBoxBuurt.Text.ToString() + "%') AS count1,(SELECT COUNT(Voorval_nummer)FROM fietsdiefstal WHERE Begin_dagsoort ='" + comboBoxDag.Text.ToString() + "'AND Gemiddelde_dagdeel ='" + comboDagdeel.Text.ToString() + "' AND Buurt LIKE'%" + comboBoxBuurt.Text.ToString() + "%') AS count2 FROM dual";
                 DataTable dt = GetData(query);
 
                 chart1.DataSource = dt;
@@ -100,7 +100,7 @@ namespace project3her
                 chart1.Series["Straatroof"].Points.Clear();
                 chart1.Series["Fietsdiefstal"].Points.Clear();
 
-                string query = "SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011 WHERE Buurt LIKE'%" + comboBoxBuurt.Text.ToString() + "%') AS count1,(SELECT COUNT(Voorval_nummer)FROM bikebike_theft WHERE Buurt LIKE'%" + comboBoxBuurt.Text.ToString() + "%') AS count2 FROM dual";
+                string query = "SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011 WHERE Buurt LIKE'%" + comboBoxBuurt.Text.ToString() + "%') AS count1,(SELECT COUNT(Voorval_nummer)FROM fietsdiefstal WHERE Buurt LIKE'%" + comboBoxBuurt.Text.ToString() + "%') AS count2 FROM dual";
                 DataTable dt = GetData(query);
 
                 chart1.DataSource = dt;
@@ -114,7 +114,7 @@ namespace project3her
                 chart1.Series["Straatroof"].Points.Clear();
                 chart1.Series["Fietsdiefstal"].Points.Clear();
 
-                string query = "SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011 WHERE dagdeel ='" + comboDagdeel.Text.ToString() + "' AND Buurt LIKE'%" + comboBoxBuurt.Text.ToString() + "%') AS count1,(SELECT COUNT(Voorval_nummer)FROM bikebike_theft WHERE Gemiddelde_dagdeel ='" + comboDagdeel.Text.ToString() + "' AND Buurt LIKE'%" + comboBoxBuurt.Text.ToString() + "%') AS count2 FROM dual";
+                string query = "SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011 WHERE dagdeel ='" + comboDagdeel.Text.ToString() + "' AND Buurt LIKE'%" + comboBoxBuurt.Text.ToString() + "%') AS count1,(SELECT COUNT(Voorval_nummer)FROM fietsdiefstal WHERE Gemiddelde_dagdeel ='" + comboDagdeel.Text.ToString() + "' AND Buurt LIKE'%" + comboBoxBuurt.Text.ToString() + "%') AS count2 FROM dual";
                 DataTable dt = GetData(query);
 
                 chart1.DataSource = dt;
@@ -129,7 +129,7 @@ namespace project3her
                 chart1.Series["Straatroof"].Points.Clear();
                 chart1.Series["Fietsdiefstal"].Points.Clear();
 
-                string query = "SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011 WHERE dagdeel ='" + comboDagdeel.Text.ToString() + "') AS count1,(SELECT COUNT(Voorval_nummer)FROM bikebike_theft WHERE Gemiddelde_dagdeel ='" + comboDagdeel.Text.ToString() + "') AS count2 FROM dual";
+                string query = "SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011 WHERE dagdeel ='" + comboDagdeel.Text.ToString() + "') AS count1,(SELECT COUNT(Voorval_nummer)FROM fietsdiefstal WHERE Gemiddelde_dagdeel ='" + comboDagdeel.Text.ToString() + "') AS count2 FROM dual";
 
                 DataTable dt = GetData(query);
 
@@ -143,7 +143,7 @@ namespace project3her
                 chart1.Series["Straatroof"].Points.Clear();
                 chart1.Series["Fietsdiefstal"].Points.Clear();
 
-                string query = "SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011 WHERE dagsoort ='" + comboBoxDag.Text.ToString() + "' AND dagdeel ='" + comboDagdeel.Text.ToString() + "') AS count1,(SELECT COUNT(Voorval_nummer)FROM bikebike_theft WHERE Begin_dagsoort ='" + comboBoxDag.Text.ToString() + "'AND Gemiddelde_dagdeel ='" + comboDagdeel.Text.ToString() + "') AS count2 FROM dual";
+                string query = "SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011 WHERE dagsoort ='" + comboBoxDag.Text.ToString() + "' AND dagdeel ='" + comboDagdeel.Text.ToString() + "') AS count1,(SELECT COUNT(Voorval_nummer)FROM fietsdiefstal WHERE Begin_dagsoort ='" + comboBoxDag.Text.ToString() + "'AND Gemiddelde_dagdeel ='" + comboDagdeel.Text.ToString() + "') AS count2 FROM dual";
 
                 DataTable dt = GetData(query);
 
@@ -157,7 +157,7 @@ namespace project3her
                 chart1.Series["Straatroof"].Points.Clear();
                 chart1.Series["Fietsdiefstal"].Points.Clear();
 
-                string query = "SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011 WHERE dagsoort ='" + comboBoxDag.Text.ToString() + "') AS count1,(SELECT COUNT(Voorval_nummer)FROM bikebike_theft WHERE Begin_dagsoort ='" + comboBoxDag.Text.ToString() + "') AS count2 FROM dual";
+                string query = "SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011 WHERE dagsoort ='" + comboBoxDag.Text.ToString() + "') AS count1,(SELECT COUNT(Voorval_nummer)FROM fietsdiefstal WHERE Begin_dagsoort ='" + comboBoxDag.Text.ToString() + "') AS count2 FROM dual";
 
                 DataTable dt = GetData(query);
 
@@ -174,7 +174,7 @@ namespace project3her
                 chart1.Series["Straatroof"].Points.Clear();
                 chart1.Series["Fietsdiefstal"].Points.Clear();
 
-                string query = "SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011 WHERE dagsoort ='" + comboBoxDag.Text.ToString() + "' AND Buurt LIKE'%" + comboBoxBuurt.Text.ToString() + "%') AS count1,(SELECT COUNT(Voorval_nummer)FROM bikebike_theft WHERE Begin_dagsoort ='" + comboBoxDag.Text.ToString() + "'AND Buurt LIKE'%" + comboBoxBuurt.Text.ToString() + "%') AS count2 FROM dual";
+                string query = "SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011 WHERE dagsoort ='" + comboBoxDag.Text.ToString() + "' AND Buurt LIKE'%" + comboBoxBuurt.Text.ToString() + "%') AS count1,(SELECT COUNT(Voorval_nummer)FROM fietsdiefstal WHERE Begin_dagsoort ='" + comboBoxDag.Text.ToString() + "'AND Buurt LIKE'%" + comboBoxBuurt.Text.ToString() + "%') AS count2 FROM dual";
                 DataTable dt = GetData(query);
 
                 chart1.DataSource = dt;
@@ -190,7 +190,7 @@ namespace project3her
                 chart1.Series["Straatroof"].Points.Clear();
                 chart1.Series["Fietsdiefstal"].Points.Clear();
 
-                string query = "SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011) AS count1,(SELECT COUNT(Voorval_nummer)FROM bikebike_theft) AS count2 FROM dual";
+                string query = "SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011) AS count1,(SELECT COUNT(Voorval_nummer)FROM fietsdiefstal) AS count2 FROM dual";
                 DataTable dt = GetData(query);
 
                 chart1.DataSource = dt;
@@ -204,7 +204,7 @@ namespace project3her
                 chart1.Series["Straatroof"].Points.Clear();
                 chart1.Series["Fietsdiefstal"].Points.Clear();
 
-                string query = "SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011 WHERE dagsoort ='" + comboBoxDag.Text.ToString() + "' AND dagdeel ='" + comboDagdeel.Text.ToString() + "' AND Buurt LIKE'%" + comboBoxBuurt.Text.ToString() + "%') AS count1,(SELECT COUNT(Voorval_nummer)FROM bikebike_theft WHERE Begin_dagsoort ='" + comboBoxDag.Text.ToString() + "'AND " +
+                string query = "SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011 WHERE dagsoort ='" + comboBoxDag.Text.ToString() + "' AND dagdeel ='" + comboDagdeel.Text.ToString() + "' AND Buurt LIKE'%" + comboBoxBuurt.Text.ToString() + "%') AS count1,(SELECT COUNT(Voorval_nummer)FROM fietsdiefstal WHERE Begin_dagsoort ='" + comboBoxDag.Text.ToString() + "'AND " +
                     "Gemiddelde_dagdeel ='" + comboDagdeel.Text.ToString() + "' AND Buurt LIKE'%" + comboBoxBuurt.Text.ToString() + "%') AS count2 FROM dual";
                 DataTable dt = GetData(query);
 
@@ -221,7 +221,7 @@ namespace project3her
                 chart1.Series["Straatroof"].Points.Clear();
                 chart1.Series["Fietsdiefstal"].Points.Clear();
 
-                string query = "SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011 WHERE Buurt LIKE'%" + comboBoxBuurt.Text.ToString() + "%') AS count1,(SELECT COUNT(Voorval_nummer)FROM bikebike_theft WHERE Buurt LIKE'%" + comboBoxBuurt.Text.ToString() + "%') AS count2 FROM dual";
+                string query = "SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011 WHERE Buurt LIKE'%" + comboBoxBuurt.Text.ToString() + "%') AS count1,(SELECT COUNT(Voorval_nummer)FROM fietsdiefstal WHERE Buurt LIKE'%" + comboBoxBuurt.Text.ToString() + "%') AS count2 FROM dual";
                 DataTable dt = GetData(query);
 
                 chart1.DataSource = dt;
@@ -235,7 +235,7 @@ namespace project3her
                 chart1.Series["Straatroof"].Points.Clear();
                 chart1.Series["Fietsdiefstal"].Points.Clear();
 
-                string query = "SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011 WHERE dagdeel ='" + comboDagdeel.Text.ToString() + "' AND Buurt LIKE'%" + comboBoxBuurt.Text.ToString() + "%') AS count1,(SELECT COUNT(Voorval_nummer)FROM bikebike_theft WHERE Gemiddelde_dagdeel ='" + comboDagdeel.Text.ToString() + "' AND Buurt LIKE'%" + comboBoxBuurt.Text.ToString() + "%') AS count2 FROM dual";
+                string query = "SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011 WHERE dagdeel ='" + comboDagdeel.Text.ToString() + "' AND Buurt LIKE'%" + comboBoxBuurt.Text.ToString() + "%') AS count1,(SELECT COUNT(Voorval_nummer)FROM fietsdiefstal WHERE Gemiddelde_dagdeel ='" + comboDagdeel.Text.ToString() + "' AND Buurt LIKE'%" + comboBoxBuurt.Text.ToString() + "%') AS count2 FROM dual";
                 DataTable dt = GetData(query);
 
                 chart1.DataSource = dt;
@@ -250,7 +250,7 @@ namespace project3her
                 chart1.Series["Straatroof"].Points.Clear();
                 chart1.Series["Fietsdiefstal"].Points.Clear();
 
-                string query = "SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011 WHERE dagdeel ='" + comboDagdeel.Text.ToString() + "') AS count1,(SELECT COUNT(Voorval_nummer)FROM bikebike_theft WHERE Gemiddelde_dagdeel ='" + comboDagdeel.Text.ToString() + "') AS count2 FROM dual";
+                string query = "SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011 WHERE dagdeel ='" + comboDagdeel.Text.ToString() + "') AS count1,(SELECT COUNT(Voorval_nummer)FROM fietsdiefstal WHERE Gemiddelde_dagdeel ='" + comboDagdeel.Text.ToString() + "') AS count2 FROM dual";
 
                 DataTable dt = GetData(query);
 
@@ -264,7 +264,7 @@ namespace project3her
                 chart1.Series["Straatroof"].Points.Clear();
                 chart1.Series["Fietsdiefstal"].Points.Clear();
 
-                string query = "SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011 WHERE dagsoort ='" + comboBoxDag.Text.ToString() + "' AND dagdeel ='" + comboDagdeel.Text.ToString() + "') AS count1,(SELECT COUNT(Voorval_nummer)FROM bikebike_theft WHERE Begin_dagsoort ='" + comboBoxDag.Text.ToString() + "'AND Gemiddelde_dagdeel ='" + comboDagdeel.Text.ToString() + "') AS count2 FROM dual";
+                string query = "SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011 WHERE dagsoort ='" + comboBoxDag.Text.ToString() + "' AND dagdeel ='" + comboDagdeel.Text.ToString() + "') AS count1,(SELECT COUNT(Voorval_nummer)FROM fietsdiefstal WHERE Begin_dagsoort ='" + comboBoxDag.Text.ToString() + "'AND Gemiddelde_dagdeel ='" + comboDagdeel.Text.ToString() + "') AS count2 FROM dual";
 
                 DataTable dt = GetData(query);
 
@@ -278,7 +278,7 @@ namespace project3her
                 chart1.Series["Straatroof"].Points.Clear();
                 chart1.Series["Fietsdiefstal"].Points.Clear();
 
-                string query = "SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011 WHERE dagsoort ='" + comboBoxDag.Text.ToString() + "') AS count1,(SELECT COUNT(Voorval_nummer)FROM bikebike_theft WHERE Begin_dagsoort ='" + comboBoxDag.Text.ToString() + "') AS count2 FROM dual";
+                string query = "SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011 WHERE dagsoort ='" + comboBoxDag.Text.ToString() + "') AS count1,(SELECT COUNT(Voorval_nummer)FROM fietsdiefstal WHERE Begin_dagsoort ='" + comboBoxDag.Text.ToString() + "') AS count2 FROM dual";
 
                 DataTable dt = GetData(query);
 
@@ -293,7 +293,7 @@ namespace project3her
                 chart1.Series["Straatroof"].Points.Clear();
                 chart1.Series["Fietsdiefstal"].Points.Clear();
 
-                string query = "SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011 WHERE dagsoort ='" + comboBoxDag.Text.ToString() + "' AND Buurt LIKE'%" + comboBoxBuurt.Text.ToString() + "%') AS count1,(SELECT COUNT(Voorval_nummer)FROM bikebike_theft WHERE Begin_dagsoort ='" + comboBoxDag.Text.ToString() + "'AND Buurt LIKE'%" + comboBoxBuurt.Text.ToString() + "%') AS count2 FROM dual";
+                string query = "SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011 WHERE dagsoort ='" + comboBoxDag.Text.ToString() + "' AND Buurt LIKE'%" + comboBoxBuurt.Text.ToString() + "%') AS count1,(SELECT COUNT(Voorval_nummer)FROM fietsdiefstal WHERE Begin_dagsoort ='" + comboBoxDag.Text.ToString() + "'AND Buurt LIKE'%" + comboBoxBuurt.Text.ToString() + "%') AS count2 FROM dual";
                 DataTable dt = GetData(query);
 
                 chart1.DataSource = dt;
@@ -309,7 +309,7 @@ namespace project3her
                 chart1.Series["Straatroof"].Points.Clear();
                 chart1.Series["Fietsdiefstal"].Points.Clear();
 
-                string query = "SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011) AS count1,(SELECT COUNT(Voorval_nummer)FROM bikebike_theft) AS count2 FROM dual";
+                string query = "SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011) AS count1,(SELECT COUNT(Voorval_nummer)FROM fietsdiefstal) AS count2 FROM dual";
                 DataTable dt = GetData(query);
 
                 chart1.DataSource = dt;
@@ -323,7 +323,7 @@ namespace project3her
                 chart1.Series["Straatroof"].Points.Clear();
                 chart1.Series["Fietsdiefstal"].Points.Clear();
 
-                string query = "SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011 WHERE dagsoort ='" + comboBoxDag.Text.ToString() + "' AND dagdeel ='" + comboDagdeel.Text.ToString() + "' AND Buurt LIKE'%" + comboBoxBuurt.Text.ToString() + "%') AS count1,(SELECT COUNT(Voorval_nummer)FROM bikebike_theft WHERE Begin_dagsoort ='" + comboBoxDag.Text.ToString() + "'AND " +
+                string query = "SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011 WHERE dagsoort ='" + comboBoxDag.Text.ToString() + "' AND dagdeel ='" + comboDagdeel.Text.ToString() + "' AND Buurt LIKE'%" + comboBoxBuurt.Text.ToString() + "%') AS count1,(SELECT COUNT(Voorval_nummer)FROM fietsdiefstal WHERE Begin_dagsoort ='" + comboBoxDag.Text.ToString() + "'AND " +
                     "Gemiddelde_dagdeel ='" + comboDagdeel.Text.ToString() + "' AND Buurt LIKE'%" + comboBoxBuurt.Text.ToString() + "%') AS count2 FROM dual";
                 DataTable dt = GetData(query);
 
@@ -340,7 +340,7 @@ namespace project3her
                 chart1.Series["Straatroof"].Points.Clear();
                 chart1.Series["Fietsdiefstal"].Points.Clear();
 
-                string query = "SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011 WHERE Buurt LIKE'%" + comboBoxBuurt.Text.ToString() + "%') AS count1,(SELECT COUNT(Voorval_nummer)FROM bikebike_theft WHERE Buurt LIKE'%" + comboBoxBuurt.Text.ToString() + "%') AS count2 FROM dual";
+                string query = "SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011 WHERE Buurt LIKE'%" + comboBoxBuurt.Text.ToString() + "%') AS count1,(SELECT COUNT(Voorval_nummer)FROM fietsdiefstal WHERE Buurt LIKE'%" + comboBoxBuurt.Text.ToString() + "%') AS count2 FROM dual";
                 DataTable dt = GetData(query);
 
                 chart1.DataSource = dt;
@@ -354,7 +354,7 @@ namespace project3her
                 chart1.Series["Straatroof"].Points.Clear();
                 chart1.Series["Fietsdiefstal"].Points.Clear();
 
-                string query = "SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011 WHERE dagdeel ='" + comboDagdeel.Text.ToString() + "' AND Buurt LIKE'%" + comboBoxBuurt.Text.ToString() + "%') AS count1,(SELECT COUNT(Voorval_nummer)FROM bikebike_theft WHERE Gemiddelde_dagdeel ='" + comboDagdeel.Text.ToString() + "' AND Buurt LIKE'%" + comboBoxBuurt.Text.ToString() + "%') AS count2 FROM dual";
+                string query = "SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011 WHERE dagdeel ='" + comboDagdeel.Text.ToString() + "' AND Buurt LIKE'%" + comboBoxBuurt.Text.ToString() + "%') AS count1,(SELECT COUNT(Voorval_nummer)FROM fietsdiefstal WHERE Gemiddelde_dagdeel ='" + comboDagdeel.Text.ToString() + "' AND Buurt LIKE'%" + comboBoxBuurt.Text.ToString() + "%') AS count2 FROM dual";
                 DataTable dt = GetData(query);
 
                 chart1.DataSource = dt;
@@ -369,7 +369,7 @@ namespace project3her
                 chart1.Series["Straatroof"].Points.Clear();
                 chart1.Series["Fietsdiefstal"].Points.Clear();
 
-                string query = "SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011 WHERE dagdeel ='" + comboDagdeel.Text.ToString() + "') AS count1,(SELECT COUNT(Voorval_nummer)FROM bikebike_theft WHERE Gemiddelde_dagdeel ='" + comboDagdeel.Text.ToString() + "') AS count2 FROM dual";
+                string query = "SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011 WHERE dagdeel ='" + comboDagdeel.Text.ToString() + "') AS count1,(SELECT COUNT(Voorval_nummer)FROM fietsdiefstal WHERE Gemiddelde_dagdeel ='" + comboDagdeel.Text.ToString() + "') AS count2 FROM dual";
 
                 DataTable dt = GetData(query);
 
@@ -383,7 +383,7 @@ namespace project3her
                 chart1.Series["Straatroof"].Points.Clear();
                 chart1.Series["Fietsdiefstal"].Points.Clear();
 
-                string query = "SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011 WHERE dagsoort ='" + comboBoxDag.Text.ToString() + "' AND dagdeel ='" + comboDagdeel.Text.ToString() + "') AS count1,(SELECT COUNT(Voorval_nummer)FROM bikebike_theft WHERE Begin_dagsoort ='" + comboBoxDag.Text.ToString() + "'AND Gemiddelde_dagdeel ='" + comboDagdeel.Text.ToString() + "') AS count2 FROM dual";
+                string query = "SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011 WHERE dagsoort ='" + comboBoxDag.Text.ToString() + "' AND dagdeel ='" + comboDagdeel.Text.ToString() + "') AS count1,(SELECT COUNT(Voorval_nummer)FROM fietsdiefstal WHERE Begin_dagsoort ='" + comboBoxDag.Text.ToString() + "'AND Gemiddelde_dagdeel ='" + comboDagdeel.Text.ToString() + "') AS count2 FROM dual";
 
                 DataTable dt = GetData(query);
 
@@ -397,7 +397,7 @@ namespace project3her
                 chart1.Series["Straatroof"].Points.Clear();
                 chart1.Series["Fietsdiefstal"].Points.Clear();
 
-                string query = "SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011 WHERE dagsoort ='" + comboBoxDag.Text.ToString() + "') AS count1,(SELECT COUNT(Voorval_nummer)FROM bikebike_theft WHERE Begin_dagsoort ='" + comboBoxDag.Text.ToString() + "') AS count2 FROM dual";
+                string query = "SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011 WHERE dagsoort ='" + comboBoxDag.Text.ToString() + "') AS count1,(SELECT COUNT(Voorval_nummer)FROM fietsdiefstal WHERE Begin_dagsoort ='" + comboBoxDag.Text.ToString() + "') AS count2 FROM dual";
 
                 DataTable dt = GetData(query);
 
@@ -413,7 +413,7 @@ namespace project3her
                 chart1.Series["Straatroof"].Points.Clear();
                 chart1.Series["Fietsdiefstal"].Points.Clear();
 
-                string query = "SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011 WHERE dagsoort ='" + comboBoxDag.Text.ToString() + "' AND Buurt LIKE'%" + comboBoxBuurt.Text.ToString() + "%') AS count1,(SELECT COUNT(Voorval_nummer)FROM bikebike_theft WHERE Begin_dagsoort ='" + comboBoxDag.Text.ToString() + "'AND Buurt LIKE'%" + comboBoxBuurt.Text.ToString() + "%') AS count2 FROM dual";
+                string query = "SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011 WHERE dagsoort ='" + comboBoxDag.Text.ToString() + "' AND Buurt LIKE'%" + comboBoxBuurt.Text.ToString() + "%') AS count1,(SELECT COUNT(Voorval_nummer)FROM fietsdiefstal WHERE Begin_dagsoort ='" + comboBoxDag.Text.ToString() + "'AND Buurt LIKE'%" + comboBoxBuurt.Text.ToString() + "%') AS count2 FROM dual";
                 DataTable dt = GetData(query);
 
                 chart1.DataSource = dt;
