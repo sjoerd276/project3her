@@ -48,7 +48,7 @@ namespace project3her
             string database = "project3";
             string uid = "project3";
             string password = "project3";
-            string constr = "SERVER=" + server + ";" + "DATABASE=" + database + ";" + "UID=" + uid + ";" + 
+            string constr = "SERVER=" + server + ";" + "DATABASE=" + database + ";" + "UID=" + uid + ";" +
                 "PASSWORD=" + password + ";";
 
             using (MySqlConnection con = new MySqlConnection(constr))
@@ -116,7 +116,7 @@ namespace project3her
             string database = "project3";
             string uid = "project3";
             string password = "project3";
-            string constr = "SERVER=" + server + ";" + "DATABASE=" + database + ";" + "UID=" + uid + ";" + 
+            string constr = "SERVER=" + server + ";" + "DATABASE=" + database + ";" + "UID=" + uid + ";" +
                 "PASSWORD=" + password + ";";
 
             MySqlConnection sqlConn = new MySqlConnection();
@@ -146,7 +146,62 @@ namespace project3her
             sqlConn.Close();
         }
 
+        private void checkCheckboxes()
+        {
+            clearChart();
 
+            if (comboBox1.Text.ToString() == "Waarden")
+            {
+                if (comboBox2.Text.ToString() == "All")
+                {
+                    fillChartValues
+                    (
+                        "SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011) + " +
+                        "(SELECT COUNT(Voorval_nummer)FROM bikebike_theft) AS count1, " +
+                        "(SELECT COUNT(Voorval_nummer)FROM bikebike_theft) AS count2", 
+                        "Aantal fietsendiefstallen en alle diefstallen totaal"
+                    );
+                }
+                else if (comboBox2.Text.ToString() != "All")
+                {
+                    fillChartValues
+                    (
+                        "SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011 WHERE BUURT LIKE'%" +
+                        comboBox2.Text.ToString() + "%') + (SELECT COUNT(Voorval_nummer)FROM bikebike_theft " +
+                        "WHERE BUURT LIKE'%" + comboBox2.Text.ToString() + "%') AS count1, " +
+                        "(SELECT COUNT(Voorval_nummer)FROM bikebike_theft WHERE BUURT LIKE'%" +
+                        comboBox2.Text.ToString() + "%') AS count2",
+                        "Aantal fietsendiefstallen en alle diefstallen totaal, per buurt"
+                    );
+                }
+            }
+
+            if (comboBox1.Text.ToString() == "Percentages")
+            {
+                if (comboBox2.Text.ToString() == "All")
+                {
+                    fillChartPercentages
+                    (
+                        "SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011) + " +
+                        "(SELECT COUNT(Voorval_nummer)FROM bikebike_theft) AS count1, " +
+                        "(SELECT COUNT(Voorval_nummer)FROM bikebike_theft) AS count2", 
+                        "Aantal fietsendiefstallen en alle diefstallen totaal"
+                    );
+                }
+                else if (comboBox2.Text.ToString() != "All")
+                {
+                    fillChartPercentages
+                    (
+                        "SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011 WHERE BUURT LIKE'%" +
+                        comboBox2.Text.ToString() + "%') + (SELECT COUNT(Voorval_nummer)FROM bikebike_theft " +
+                        "WHERE BUURT LIKE'%" + comboBox2.Text.ToString() + "%') AS count1, " +
+                        "(SELECT COUNT(Voorval_nummer)FROM bikebike_theft WHERE BUURT LIKE'%" +
+                        comboBox2.Text.ToString() + "%') AS count2",
+                        "Aantal fietsendiefstallen en alle diefstallen totaal, per buurt"
+                    );
+                }
+            }
+        }
 
         // =======================================
         // 
@@ -157,40 +212,12 @@ namespace project3her
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e) // Waarden choser
         {
-            if (comboBox1.Text.ToString() == "Waarden")
-            {
-                clearChart();
-
-                if (comboBox2.Text.ToString() == "All")
-                {
-                    fillChartValues
-                    (
-                        "SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011) + " +
-                        "(SELECT COUNT(Voorval_nummer)FROM bikebike_theft) AS count1, " +
-                        "(SELECT COUNT(Voorval_nummer)FROM bikebike_theft) AS count2", "Diefstal"
-                    );
-                }
-                else if (comboBox2.Text.ToString() != "All") // REPLACE QUERY!
-                {
-                    fillChartValues
-                    (
-                        "SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011) + " +
-                        "(SELECT COUNT(Voorval_nummer)FROM bikebike_theft) AS count1, " +
-                        "(SELECT COUNT(Voorval_nummer)FROM bikebike_theft) AS count2", "Diefstal"
-                    );
-                }
-            }
-
-            if (comboBox1.Text.ToString() == "Percentages")
-            {
-                clearChart();
-                // fillChartPercentages("some query", "some name");
-            }
+            checkCheckboxes();
         }
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e) // Buurt choser
         {
-
+            checkCheckboxes();
         }
 
         // =======================================
@@ -211,8 +238,10 @@ namespace project3her
             (
                 "SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011) + " +
                 "(SELECT COUNT(Voorval_nummer)FROM bikebike_theft) AS count1, " +
-                "(SELECT COUNT(Voorval_nummer)FROM bikebike_theft) AS count2", "Diefstal"
+                "(SELECT COUNT(Voorval_nummer)FROM bikebike_theft) AS count2", 
+                "Diefstal"
             );
+
             fillCombobox1();
             fillCombobox2();
         }
@@ -240,5 +269,6 @@ namespace project3her
         private void chart1_Click(object sender, EventArgs e) { } // "THE" CHART
         private void label1_Click(object sender, EventArgs e) { } // Label "Type waarden" (just a label)
         private void label2_Click(object sender, EventArgs e) { } // Label "Buurt" (just a label)
+        private void label3_Click(object sender, EventArgs e) { } // Label "Title" (just a label)
     }
 }
