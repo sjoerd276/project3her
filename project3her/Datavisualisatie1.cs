@@ -48,7 +48,8 @@ namespace project3her
             string database = "project3";
             string uid = "project3";
             string password = "project3";
-            string constr = "SERVER=" + server + ";" + "DATABASE=" + database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";";
+            string constr = "SERVER=" + server + ";" + "DATABASE=" + database + ";" + "UID=" + uid + ";" + 
+                "PASSWORD=" + password + ";";
 
             using (MySqlConnection con = new MySqlConnection(constr))
             {
@@ -115,7 +116,8 @@ namespace project3her
             string database = "project3";
             string uid = "project3";
             string password = "project3";
-            string constr = "SERVER=" + server + ";" + "DATABASE=" + database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";";
+            string constr = "SERVER=" + server + ";" + "DATABASE=" + database + ";" + "UID=" + uid + ";" + 
+                "PASSWORD=" + password + ";";
 
             MySqlConnection sqlConn = new MySqlConnection();
             MySqlCommand sqlCmd = new MySqlCommand();
@@ -159,13 +161,30 @@ namespace project3her
             {
                 clearChart();
 
-                // fillChartValues("some query", "some name");
+                if (comboBox2.Text.ToString() == "All")
+                {
+                    fillChartValues
+                    (
+                        "SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011) + " +
+                        "(SELECT COUNT(Voorval_nummer)FROM bikebike_theft) AS count1, " +
+                        "(SELECT COUNT(Voorval_nummer)FROM bikebike_theft) AS count2", "Diefstal"
+                    );
+                }
+                else if (comboBox2.Text.ToString() != "All") // REPLACE QUERY!
+                {
+                    fillChartValues
+                    (
+                        "SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011) + " +
+                        "(SELECT COUNT(Voorval_nummer)FROM bikebike_theft) AS count1, " +
+                        "(SELECT COUNT(Voorval_nummer)FROM bikebike_theft) AS count2", "Diefstal"
+                    );
+                }
             }
 
             if (comboBox1.Text.ToString() == "Percentages")
             {
                 clearChart();
-                // fillChartValues("some query", "some name");
+                // fillChartPercentages("some query", "some name");
             }
         }
 
@@ -188,7 +207,12 @@ namespace project3her
 
         private void Datavisualisatie1_Load(object sender, EventArgs e)
         {
-            fillChartValues("SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011) + (SELECT COUNT(Voorval_nummer)FROM bikebike_theft) AS count1, (SELECT COUNT(Voorval_nummer)FROM bikebike_theft) AS count2", "Diefstal");
+            fillChartValues
+            (
+                "SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011) + " +
+                "(SELECT COUNT(Voorval_nummer)FROM bikebike_theft) AS count1, " +
+                "(SELECT COUNT(Voorval_nummer)FROM bikebike_theft) AS count2", "Diefstal"
+            );
             fillCombobox1();
             fillCombobox2();
         }
