@@ -69,7 +69,7 @@ namespace project3her
             chart1.Titles.Clear();
         }
 
-        private void fillChart(string query, string chartTitle = "Datavisualization")
+        private void fillChartValues(string query, string chartTitle = "Datavisualization")
         {
             DataTable dt = GetData(query);
 
@@ -81,18 +81,24 @@ namespace project3her
             chart1.Titles.Add(chartTitle);
         }
 
-        private int sqlToInt(string query)
+        private void fillChartPercentages(string query, string chartTitle = "Datavisualization")
         {
             DataTable dt = GetData(query);
-            int integer = 1;
-            return integer;
+
+            chart1.DataSource = dt;
+
+            // do something with percentage calculation!
+            chart1.Series["Totaal misdaden"].YValueMembers = "count1";
+            chart1.Series["Fietsdiefstal"].YValueMembers = "count2";
+
+            chart1.Titles.Add(chartTitle);
         }
 
-        private void fillCombobox1() // What kind of values?
+        private void fillCombobox1() // Waarden - selector
         {
             comboBox1.Items.Insert(0, "Waarden");
             comboBox1.Items.Insert(1, "Percentages");
-            comboBoxDag.SelectedIndex = 0;
+            comboBox1.SelectedIndex = 0;
         }
 
         private void fillCombobox2() // Buurten - selector
@@ -138,18 +144,28 @@ namespace project3her
             sqlConn.Close();
         }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e) // Type waarden choser
+
+
+        // =======================================
+        // 
+        // End of static functions
+        // Code when user does something
+        //
+        // =======================================
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e) // Waarden choser
         {
             if (comboBox1.Text.ToString() == "Waarden")
             {
                 clearChart();
-                // fillChart("some query", "some name");
+
+                // fillChartValues("some query", "some name");
             }
 
             if (comboBox1.Text.ToString() == "Percentages")
             {
                 clearChart();
-                // fillChart("some query", "some name");
+                // fillChartValues("some query", "some name");
             }
         }
 
@@ -164,7 +180,7 @@ namespace project3her
         // Now make the order of things happening
         //
         // Initial load:
-        // Just load the total data into the chart and fill combobox "Buurten"
+        // Just load the total data into the chart and fill comboboxes
         // The rest happens when user does something
         // Also just leave not used functions here
         //
@@ -172,7 +188,7 @@ namespace project3her
 
         private void Datavisualisatie1_Load(object sender, EventArgs e)
         {
-            fillChart("SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011) + (SELECT COUNT(Voorval_nummer)FROM bikebike_theft) AS count1, (SELECT COUNT(Voorval_nummer)FROM bikebike_theft) AS count2", "Diefstal");
+            fillChartValues("SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011) + (SELECT COUNT(Voorval_nummer)FROM bikebike_theft) AS count1, (SELECT COUNT(Voorval_nummer)FROM bikebike_theft) AS count2", "Diefstal");
             fillCombobox1();
             fillCombobox2();
         }
