@@ -20,7 +20,7 @@ namespace project3her
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void menu_Click(object sender, EventArgs e)
         {
             Form1 menu = new Form1();
             menu.Show();

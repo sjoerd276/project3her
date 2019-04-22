@@ -37,12 +37,12 @@
             this.menubutton = new System.Windows.Forms.Button();
             this.chart3 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.filterpanel = new System.Windows.Forms.Panel();
-            this.ratiotext = new System.Windows.Forms.TextBox();
-            this.misdadengepleegd = new System.Windows.Forms.Label();
-            this.voorelkeinwoner = new System.Windows.Forms.Label();
             this.jaarfilter = new System.Windows.Forms.ComboBox();
-            this.Filters = new System.Windows.Forms.Label();
             this.buurtfilter = new System.Windows.Forms.ComboBox();
+            this.inwonerlabel = new System.Windows.Forms.Label();
+            this.misdadenlabel = new System.Windows.Forms.Label();
+            this.filterlabel3 = new System.Windows.Forms.Label();
+            this.deelvraag3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.chart3)).BeginInit();
             this.filterpanel.SuspendLayout();
             this.SuspendLayout();
@@ -69,7 +69,7 @@
             this.chart3.DataSource = this.chart3.Annotations;
             legend1.Name = "Legend1";
             this.chart3.Legends.Add(legend1);
-            this.chart3.Location = new System.Drawing.Point(280, 15);
+            this.chart3.Location = new System.Drawing.Point(280, 55);
             this.chart3.Margin = new System.Windows.Forms.Padding(4);
             this.chart3.Name = "chart3";
             series1.ChartArea = "ChartArea1";
@@ -80,7 +80,7 @@
             series2.Name = "Populatie";
             this.chart3.Series.Add(series1);
             this.chart3.Series.Add(series2);
-            this.chart3.Size = new System.Drawing.Size(760, 525);
+            this.chart3.Size = new System.Drawing.Size(760, 485);
             this.chart3.TabIndex = 2;
             this.chart3.Text = "chart3";
             title1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -91,11 +91,10 @@
             // filterpanel
             // 
             this.filterpanel.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.filterpanel.Controls.Add(this.ratiotext);
-            this.filterpanel.Controls.Add(this.misdadengepleegd);
-            this.filterpanel.Controls.Add(this.voorelkeinwoner);
+            this.filterpanel.Controls.Add(this.filterlabel3);
+            this.filterpanel.Controls.Add(this.misdadenlabel);
+            this.filterpanel.Controls.Add(this.inwonerlabel);
             this.filterpanel.Controls.Add(this.jaarfilter);
-            this.filterpanel.Controls.Add(this.Filters);
             this.filterpanel.Controls.Add(this.buurtfilter);
             this.filterpanel.Controls.Add(this.menubutton);
             this.filterpanel.Location = new System.Drawing.Point(0, 0);
@@ -103,38 +102,6 @@
             this.filterpanel.Name = "filterpanel";
             this.filterpanel.Size = new System.Drawing.Size(250, 555);
             this.filterpanel.TabIndex = 3;
-            // 
-            // ratiotext
-            // 
-            this.ratiotext.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.ratiotext.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.ratiotext.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ratiotext.Location = new System.Drawing.Point(32, 420);
-            this.ratiotext.Name = "ratiotext";
-            this.ratiotext.Size = new System.Drawing.Size(189, 38);
-            this.ratiotext.TabIndex = 6;
-            // 
-            // misdadengepleegd
-            // 
-            this.misdadengepleegd.AutoSize = true;
-            this.misdadengepleegd.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.misdadengepleegd.Location = new System.Drawing.Point(45, 480);
-            this.misdadengepleegd.Name = "misdadengepleegd";
-            this.misdadengepleegd.Size = new System.Drawing.Size(157, 20);
-            this.misdadengepleegd.TabIndex = 5;
-            this.misdadengepleegd.Text = "misdaden gepleegd.";
-            this.misdadengepleegd.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // voorelkeinwoner
-            // 
-            this.voorelkeinwoner.AutoSize = true;
-            this.voorelkeinwoner.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.voorelkeinwoner.Location = new System.Drawing.Point(28, 380);
-            this.voorelkeinwoner.Name = "voorelkeinwoner";
-            this.voorelkeinwoner.Size = new System.Drawing.Size(193, 20);
-            this.voorelkeinwoner.TabIndex = 4;
-            this.voorelkeinwoner.Text = "Voor elke inwoner zijn er";
-            this.voorelkeinwoner.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // jaarfilter
             // 
@@ -149,17 +116,6 @@
             this.jaarfilter.TabIndex = 3;
             this.jaarfilter.Text = "2011";
             this.jaarfilter.SelectedIndexChanged += new System.EventHandler(this.Jaarfilter_SelectedIndexChanged);
-            // 
-            // Filters
-            // 
-            this.Filters.AutoSize = true;
-            this.Filters.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Filters.Location = new System.Drawing.Point(97, 150);
-            this.Filters.Name = "Filters";
-            this.Filters.Size = new System.Drawing.Size(56, 20);
-            this.Filters.TabIndex = 2;
-            this.Filters.Text = "Filters";
-            this.Filters.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // buurtfilter
             // 
@@ -260,11 +216,49 @@
             this.buurtfilter.Text = "Alle Buurten";
             this.buurtfilter.SelectedIndexChanged += new System.EventHandler(this.Buurtfilter_SelectedIndexChanged);
             // 
+            // inwonerlabel
+            // 
+            this.inwonerlabel.AutoSize = true;
+            this.inwonerlabel.Location = new System.Drawing.Point(43, 380);
+            this.inwonerlabel.Name = "inwonerlabel";
+            this.inwonerlabel.Size = new System.Drawing.Size(163, 17);
+            this.inwonerlabel.TabIndex = 7;
+            this.inwonerlabel.Text = "Voor elke inwoner zijn er";
+            // 
+            // misdadenlabel
+            // 
+            this.misdadenlabel.AutoSize = true;
+            this.misdadenlabel.Location = new System.Drawing.Point(57, 480);
+            this.misdadenlabel.Name = "misdadenlabel";
+            this.misdadenlabel.Size = new System.Drawing.Size(136, 17);
+            this.misdadenlabel.TabIndex = 8;
+            this.misdadenlabel.Text = "misdaden gepleegd.";
+            // 
+            // filterlabel3
+            // 
+            this.filterlabel3.AutoSize = true;
+            this.filterlabel3.Location = new System.Drawing.Point(102, 150);
+            this.filterlabel3.Name = "filterlabel3";
+            this.filterlabel3.Size = new System.Drawing.Size(46, 17);
+            this.filterlabel3.TabIndex = 9;
+            this.filterlabel3.Text = "Filters";
+            // 
+            // deelvraag3
+            // 
+            this.deelvraag3.AutoSize = true;
+            this.deelvraag3.Location = new System.Drawing.Point(330, 20);
+            this.deelvraag3.Name = "deelvraag3";
+            this.deelvraag3.Size = new System.Drawing.Size(660, 17);
+            this.deelvraag3.TabIndex = 4;
+            this.deelvraag3.Text = "Wat is het verband tussen de totale populatie van een buurt en het totale aantal " +
+    "misdaden in die buurt?";
+            // 
             // Datavisualisatie3
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1067, 554);
+            this.Controls.Add(this.deelvraag3);
             this.Controls.Add(this.chart3);
             this.Controls.Add(this.filterpanel);
             this.Margin = new System.Windows.Forms.Padding(4);
@@ -275,6 +269,7 @@
             this.filterpanel.ResumeLayout(false);
             this.filterpanel.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -284,10 +279,10 @@
         private System.Windows.Forms.DataVisualization.Charting.Chart chart3;
         private System.Windows.Forms.Panel filterpanel;
         private System.Windows.Forms.ComboBox buurtfilter;
-        private System.Windows.Forms.Label Filters;
         private System.Windows.Forms.ComboBox jaarfilter;
-        private System.Windows.Forms.Label voorelkeinwoner;
-        private System.Windows.Forms.Label misdadengepleegd;
-        private System.Windows.Forms.TextBox ratiotext;
+        private System.Windows.Forms.Label filterlabel3;
+        private System.Windows.Forms.Label misdadenlabel;
+        private System.Windows.Forms.Label inwonerlabel;
+        private System.Windows.Forms.Label deelvraag3;
     }
 }
