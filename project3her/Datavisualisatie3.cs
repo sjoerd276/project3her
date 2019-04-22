@@ -34,7 +34,6 @@ namespace project3her
 
             chart3.DataSource = dt;
 
-
             chart3.Series["Misdaden"].YValueMembers = "count1";
             chart3.Series["Populatie"].YValueMembers = "count2";
             chart3.Series["Misdaden"].IsValueShownAsLabel = true;
@@ -43,8 +42,7 @@ namespace project3her
             chart3.Titles.Add("Aantal misdaden tegenover populatie per buurt");
             chart3.Titles.Add("Alle Buurten");
             chart3.Titles.Add("2011");
-            ratiolabel2.Text = "";
-            //Ratio(query);
+            Ratio(query);
         }
         private static DataTable GetData(string query)
         {
@@ -88,6 +86,7 @@ namespace project3her
                 chart3.Titles.Add("Aantal misdaden tegenover populatie per buurt");
                 chart3.Titles.Add(buurtfilter.Text.ToString());
                 chart3.Titles.Add(jaarfilter.Text.ToString());
+                Ratio(query);
             }
             if (buurtfilter != null && buurtfilter.Text.ToString() != "Alle buurten" && jaarfilter.Text.ToString() == "2012")
             {
@@ -110,6 +109,7 @@ namespace project3her
                 chart3.Titles.Add("Aantal misdaden tegenover populatie per buurt");
                 chart3.Titles.Add(buurtfilter.Text.ToString());
                 chart3.Titles.Add(jaarfilter.Text.ToString());
+                Ratio(query);
             }
             if (buurtfilter.Text.ToString() == "Alle Buurten" && jaarfilter.Text.ToString() == "2011")
             {
@@ -132,6 +132,7 @@ namespace project3her
                 chart3.Titles.Add("Aantal misdaden tegenover populatie per buurt");
                 chart3.Titles.Add("Alle buurten");
                 chart3.Titles.Add(jaarfilter.Text.ToString());
+                Ratio(query);
             }
             if (buurtfilter.Text.ToString() == "Alle Buurten" && jaarfilter.Text.ToString() == "2012")
             {
@@ -154,6 +155,7 @@ namespace project3her
                 chart3.Titles.Add("Aantal misdaden tegenover populatie per buurt");
                 chart3.Titles.Add("Alle buurten");
                 chart3.Titles.Add(jaarfilter.Text.ToString());
+                Ratio(query);
             }
 
         }
@@ -181,6 +183,7 @@ namespace project3her
                 chart3.Titles.Add("Aantal misdaden tegenover populatie per buurt");
                 chart3.Titles.Add(buurtfilter.Text.ToString());
                 chart3.Titles.Add(jaarfilter.Text.ToString());
+                Ratio(query);
             }
             if (buurtfilter != null && buurtfilter.Text.ToString() != "Alle buurten" && jaarfilter.Text.ToString() == "2012")
             {
@@ -203,6 +206,7 @@ namespace project3her
                 chart3.Titles.Add("Aantal misdaden tegenover populatie per buurt");
                 chart3.Titles.Add(buurtfilter.Text.ToString());
                 chart3.Titles.Add(jaarfilter.Text.ToString());
+                Ratio(query);
             }
             if (buurtfilter.Text.ToString() == "Alle Buurten" && jaarfilter.Text.ToString() == "2011")
             {
@@ -225,6 +229,7 @@ namespace project3her
                 chart3.Titles.Add("Aantal misdaden tegenover populatie per buurt");
                 chart3.Titles.Add("Alle buurten");
                 chart3.Titles.Add(jaarfilter.Text.ToString());
+                Ratio(query);
             }
             if (buurtfilter.Text.ToString() == "Alle Buurten" && jaarfilter.Text.ToString() == "2012")
             {
@@ -247,34 +252,30 @@ namespace project3her
                 chart3.Titles.Add("Aantal misdaden tegenover populatie per buurt");
                 chart3.Titles.Add("Alle buurten");
                 chart3.Titles.Add(jaarfilter.Text.ToString());
+                Ratio(query);
             }
         }
 
-        //private void Ratio(string ratio)
-        //{
-        //    string server = "localhost";
-        //    string database = "project3";
-        //    string uid = "project3";
-        //    string password = "project3";
-        //    string constr = "SERVER=" + server + ";" + "DATABASE=" + database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";";
-
-        //    MySqlConnection sqlConn = new MySqlConnection();
-        //    MySqlCommand sqlCmd = new MySqlCommand();
-        //    sqlConn.ConnectionString = constr;
-        //    sqlCmd.CommandText = ratio;
-        //    sqlCmd.CommandType = CommandType.Text;
-        //    sqlConn.Open();
-        //    sqlCmd.Connection = sqlConn;
-        //    MySqlDataReader reader = sqlCmd.ExecuteReader();
-
-        //    double pop = double.Parse("count2");
-        //    double mis = double.Parse("count1");
-        //    double result = pop / mis;
-        //    ratiolabel2.Text = result.ToString();
-
-        //    reader.Close();
-        //    sqlConn.Close();
-
-        //}
+        private void Ratio(string ratio)
+        {
+            DataTable dt = GetData(ratio);
+            if (buurtfilter.Text.ToString() != "Alle Buurten")
+            {
+                double mis = Convert.ToDouble(dt.Rows[0]["count1"]);
+                double pop = Convert.ToDouble(dt.Rows[0]["count2"]);
+                double result = mis / pop;
+                ratiolabel2.Text = result.ToString("0.####");
+            }
+            else if (buurtfilter.Text.ToString() == "Alle Buurten" && jaarfilter.Text.ToString() == "2011")
+            {
+                double result = 0.0154;
+                ratiolabel2.Text = result.ToString("0.####");
+            }
+            else
+            {
+                double result = 0.0157;
+                ratiolabel2.Text = result.ToString("0.####");
+            }
+        }
     }
 }

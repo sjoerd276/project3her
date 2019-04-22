@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea8 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend8 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series15 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series16 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.chart3 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.deelvraag3 = new System.Windows.Forms.Label();
             this.menubutton = new System.Windows.Forms.Button();
@@ -49,22 +49,22 @@
             // 
             // chart3
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chart3.ChartAreas.Add(chartArea1);
+            chartArea8.Name = "ChartArea1";
+            this.chart3.ChartAreas.Add(chartArea8);
             this.chart3.DataSource = this.chart3.Annotations;
-            legend1.Name = "Legend1";
-            this.chart3.Legends.Add(legend1);
+            legend8.Name = "Legend1";
+            this.chart3.Legends.Add(legend8);
             this.chart3.Location = new System.Drawing.Point(280, 55);
             this.chart3.Margin = new System.Windows.Forms.Padding(4);
             this.chart3.Name = "chart3";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Misdaden";
-            series2.ChartArea = "ChartArea1";
-            series2.Legend = "Legend1";
-            series2.Name = "Populatie";
-            this.chart3.Series.Add(series1);
-            this.chart3.Series.Add(series2);
+            series15.ChartArea = "ChartArea1";
+            series15.Legend = "Legend1";
+            series15.Name = "Misdaden";
+            series16.ChartArea = "ChartArea1";
+            series16.Legend = "Legend1";
+            series16.Name = "Populatie";
+            this.chart3.Series.Add(series15);
+            this.chart3.Series.Add(series16);
             this.chart3.Size = new System.Drawing.Size(760, 485);
             this.chart3.TabIndex = 2;
             this.chart3.Text = "chart3";
@@ -139,7 +139,7 @@
             "Middelland",
             "Molenlaankwartier",
             "Nesselande",
-            "Nieuwe Crooswijk",
+            "Nieuw Crooswijk",
             "Nieuw Mathenesse",
             "Nieuwe Werk",
             "Nieuwe Westen",
@@ -261,9 +261,9 @@
             // ratiolabel2
             // 
             this.ratiolabel2.AutoSize = true;
-            this.ratiolabel2.BackColor = System.Drawing.SystemColors.Control;
+            this.ratiolabel2.BackColor = System.Drawing.SystemColors.ControlDark;
             this.ratiolabel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ratiolabel2.Location = new System.Drawing.Point(80, 420);
+            this.ratiolabel2.Location = new System.Drawing.Point(60, 420);
             this.ratiolabel2.Name = "ratiolabel2";
             this.ratiolabel2.Size = new System.Drawing.Size(80, 38);
             this.ratiolabel2.TabIndex = 11;
@@ -277,8 +277,11 @@
             this.Controls.Add(this.deelvraag3);
             this.Controls.Add(this.chart3);
             this.Controls.Add(this.filterpanel);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(4);
+            this.MaximizeBox = false;
             this.Name = "Datavisualisatie3";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Datavisualisatie3";
             this.Load += new System.EventHandler(this.Datavisualisatie3_Load);
             ((System.ComponentModel.ISupportInitialize)(this.chart3)).EndInit();
