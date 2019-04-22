@@ -49,14 +49,15 @@
             // 
             // menubutton
             // 
+            this.menubutton.BackColor = System.Drawing.SystemColors.Control;
             this.menubutton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.menubutton.Location = new System.Drawing.Point(51, 15);
+            this.menubutton.Location = new System.Drawing.Point(50, 15);
             this.menubutton.Margin = new System.Windows.Forms.Padding(4);
             this.menubutton.Name = "menubutton";
-            this.menubutton.Size = new System.Drawing.Size(149, 50);
+            this.menubutton.Size = new System.Drawing.Size(150, 50);
             this.menubutton.TabIndex = 0;
             this.menubutton.Text = "Menu";
-            this.menubutton.UseVisualStyleBackColor = true;
+            this.menubutton.UseVisualStyleBackColor = false;
             this.menubutton.Click += new System.EventHandler(this.menu_Click);
             // 
             // chart3
@@ -68,7 +69,7 @@
             this.chart3.DataSource = this.chart3.Annotations;
             legend1.Name = "Legend1";
             this.chart3.Legends.Add(legend1);
-            this.chart3.Location = new System.Drawing.Point(277, 14);
+            this.chart3.Location = new System.Drawing.Point(280, 15);
             this.chart3.Margin = new System.Windows.Forms.Padding(4);
             this.chart3.Name = "chart3";
             series1.ChartArea = "ChartArea1";
@@ -79,7 +80,7 @@
             series2.Name = "Populatie";
             this.chart3.Series.Add(series1);
             this.chart3.Series.Add(series2);
-            this.chart3.Size = new System.Drawing.Size(760, 526);
+            this.chart3.Size = new System.Drawing.Size(760, 525);
             this.chart3.TabIndex = 2;
             this.chart3.Text = "chart3";
             title1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -141,10 +142,10 @@
             this.jaarfilter.Items.AddRange(new object[] {
             "2011",
             "2012"});
-            this.jaarfilter.Location = new System.Drawing.Point(51, 230);
+            this.jaarfilter.Location = new System.Drawing.Point(50, 230);
             this.jaarfilter.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.jaarfilter.Name = "jaarfilter";
-            this.jaarfilter.Size = new System.Drawing.Size(151, 24);
+            this.jaarfilter.Size = new System.Drawing.Size(150, 24);
             this.jaarfilter.TabIndex = 3;
             this.jaarfilter.Text = "2011";
             this.jaarfilter.SelectedIndexChanged += new System.EventHandler(this.Jaarfilter_SelectedIndexChanged);
@@ -251,10 +252,10 @@
             "Zuiderpark",
             "Zuidplein",
             "Zuidwijk"});
-            this.buurtfilter.Location = new System.Drawing.Point(51, 180);
+            this.buurtfilter.Location = new System.Drawing.Point(50, 180);
             this.buurtfilter.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buurtfilter.Name = "buurtfilter";
-            this.buurtfilter.Size = new System.Drawing.Size(151, 24);
+            this.buurtfilter.Size = new System.Drawing.Size(150, 24);
             this.buurtfilter.TabIndex = 1;
             this.buurtfilter.Text = "Alle Buurten";
             this.buurtfilter.SelectedIndexChanged += new System.EventHandler(this.Buurtfilter_SelectedIndexChanged);

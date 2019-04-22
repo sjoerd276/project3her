@@ -41,7 +41,7 @@ namespace project3her
             chart3.Titles.Add("Alle Buurten");
             chart3.Titles.Add("2011");
 
-            //ratiotext.Text = (count1 / count2).ToString();
+            //ratiotext.Text = (5.0 / 20.0).ToString();
         }
         private static DataTable GetData(string query)
         {
