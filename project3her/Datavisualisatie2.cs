@@ -37,6 +37,11 @@ namespace project3her
             chart1.Series["Straatroof"].YValueMembers = "count1";
             chart1.Series["Fietsdiefstal"].YValueMembers = "count2";
             chart1.Titles.Add("Diefstal");
+            chart1.Series["Straatroof"].IsValueShownAsLabel = true;
+            chart1.Series["Fietsdiefstal"].IsValueShownAsLabel = true;
+            chart1.ChartAreas[0].AxisX.LabelStyle.Format = " ";
+            
+
 
             FillCB1();
             FillCB2();
