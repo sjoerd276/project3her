@@ -29,23 +29,55 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
-            this.menubutton = new System.Windows.Forms.Button();
             this.chart3 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.filterpanel = new System.Windows.Forms.Panel();
-            this.jaarfilter = new System.Windows.Forms.ComboBox();
+            this.deelvraag3 = new System.Windows.Forms.Label();
+            this.menubutton = new System.Windows.Forms.Button();
             this.buurtfilter = new System.Windows.Forms.ComboBox();
+            this.jaarfilter = new System.Windows.Forms.ComboBox();
             this.inwonerlabel = new System.Windows.Forms.Label();
             this.misdadenlabel = new System.Windows.Forms.Label();
             this.filterlabel3 = new System.Windows.Forms.Label();
-            this.deelvraag3 = new System.Windows.Forms.Label();
+            this.ratiolabel = new System.Windows.Forms.Label();
+            this.filterpanel = new System.Windows.Forms.Panel();
+            this.ratiolabel2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.chart3)).BeginInit();
             this.filterpanel.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // chart3
+            // 
+            chartArea1.Name = "ChartArea1";
+            this.chart3.ChartAreas.Add(chartArea1);
+            this.chart3.DataSource = this.chart3.Annotations;
+            legend1.Name = "Legend1";
+            this.chart3.Legends.Add(legend1);
+            this.chart3.Location = new System.Drawing.Point(280, 55);
+            this.chart3.Margin = new System.Windows.Forms.Padding(4);
+            this.chart3.Name = "chart3";
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Misdaden";
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "Populatie";
+            this.chart3.Series.Add(series1);
+            this.chart3.Series.Add(series2);
+            this.chart3.Size = new System.Drawing.Size(760, 485);
+            this.chart3.TabIndex = 2;
+            this.chart3.Text = "chart3";
+            // 
+            // deelvraag3
+            // 
+            this.deelvraag3.AutoSize = true;
+            this.deelvraag3.Location = new System.Drawing.Point(330, 20);
+            this.deelvraag3.Name = "deelvraag3";
+            this.deelvraag3.Size = new System.Drawing.Size(660, 17);
+            this.deelvraag3.TabIndex = 4;
+            this.deelvraag3.Text = "Wat is het verband tussen de totale populatie van een buurt en het totale aantal " +
+    "misdaden in die buurt?";
             // 
             // menubutton
             // 
@@ -59,63 +91,6 @@
             this.menubutton.Text = "Menu";
             this.menubutton.UseVisualStyleBackColor = false;
             this.menubutton.Click += new System.EventHandler(this.menu_Click);
-            // 
-            // chart3
-            // 
-            chartArea1.Name = "ChartArea1";
-            chartArea2.Name = "ChartArea2";
-            this.chart3.ChartAreas.Add(chartArea1);
-            this.chart3.ChartAreas.Add(chartArea2);
-            this.chart3.DataSource = this.chart3.Annotations;
-            legend1.Name = "Legend1";
-            this.chart3.Legends.Add(legend1);
-            this.chart3.Location = new System.Drawing.Point(280, 55);
-            this.chart3.Margin = new System.Windows.Forms.Padding(4);
-            this.chart3.Name = "chart3";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Misdaden";
-            series2.ChartArea = "ChartArea2";
-            series2.Legend = "Legend1";
-            series2.Name = "Populatie";
-            this.chart3.Series.Add(series1);
-            this.chart3.Series.Add(series2);
-            this.chart3.Size = new System.Drawing.Size(760, 485);
-            this.chart3.TabIndex = 2;
-            this.chart3.Text = "chart3";
-            title1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            title1.Name = "Aantal misdaden tegenover populatie";
-            title1.Text = "Aantal misdaden tegenover populatie";
-            this.chart3.Titles.Add(title1);
-            // 
-            // filterpanel
-            // 
-            this.filterpanel.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.filterpanel.Controls.Add(this.filterlabel3);
-            this.filterpanel.Controls.Add(this.misdadenlabel);
-            this.filterpanel.Controls.Add(this.inwonerlabel);
-            this.filterpanel.Controls.Add(this.jaarfilter);
-            this.filterpanel.Controls.Add(this.buurtfilter);
-            this.filterpanel.Controls.Add(this.menubutton);
-            this.filterpanel.Location = new System.Drawing.Point(0, 0);
-            this.filterpanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.filterpanel.Name = "filterpanel";
-            this.filterpanel.Size = new System.Drawing.Size(250, 555);
-            this.filterpanel.TabIndex = 3;
-            // 
-            // jaarfilter
-            // 
-            this.jaarfilter.FormattingEnabled = true;
-            this.jaarfilter.Items.AddRange(new object[] {
-            "2011",
-            "2012"});
-            this.jaarfilter.Location = new System.Drawing.Point(50, 230);
-            this.jaarfilter.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.jaarfilter.Name = "jaarfilter";
-            this.jaarfilter.Size = new System.Drawing.Size(150, 24);
-            this.jaarfilter.TabIndex = 3;
-            this.jaarfilter.Text = "2011";
-            this.jaarfilter.SelectedIndexChanged += new System.EventHandler(this.Jaarfilter_SelectedIndexChanged);
             // 
             // buurtfilter
             // 
@@ -186,7 +161,7 @@
             "Rijnpoort",
             "Rozenburg",
             "Rubroek",
-            "\'s Gravenland",
+            "s Gravenland",
             "Schiebroek",
             "Schiemond",
             "Schieveen",
@@ -216,6 +191,20 @@
             this.buurtfilter.Text = "Alle Buurten";
             this.buurtfilter.SelectedIndexChanged += new System.EventHandler(this.Buurtfilter_SelectedIndexChanged);
             // 
+            // jaarfilter
+            // 
+            this.jaarfilter.FormattingEnabled = true;
+            this.jaarfilter.Items.AddRange(new object[] {
+            "2011",
+            "2012"});
+            this.jaarfilter.Location = new System.Drawing.Point(50, 230);
+            this.jaarfilter.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.jaarfilter.Name = "jaarfilter";
+            this.jaarfilter.Size = new System.Drawing.Size(150, 24);
+            this.jaarfilter.TabIndex = 3;
+            this.jaarfilter.Text = "2011";
+            this.jaarfilter.SelectedIndexChanged += new System.EventHandler(this.Jaarfilter_SelectedIndexChanged);
+            // 
             // inwonerlabel
             // 
             this.inwonerlabel.AutoSize = true;
@@ -243,15 +232,42 @@
             this.filterlabel3.TabIndex = 9;
             this.filterlabel3.Text = "Filters";
             // 
-            // deelvraag3
+            // ratiolabel
             // 
-            this.deelvraag3.AutoSize = true;
-            this.deelvraag3.Location = new System.Drawing.Point(330, 20);
-            this.deelvraag3.Name = "deelvraag3";
-            this.deelvraag3.Size = new System.Drawing.Size(660, 17);
-            this.deelvraag3.TabIndex = 4;
-            this.deelvraag3.Text = "Wat is het verband tussen de totale populatie van een buurt en het totale aantal " +
-    "misdaden in die buurt?";
+            this.ratiolabel.AutoSize = true;
+            this.ratiolabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ratiolabel.Location = new System.Drawing.Point(67, 417);
+            this.ratiolabel.Name = "ratiolabel";
+            this.ratiolabel.Size = new System.Drawing.Size(0, 38);
+            this.ratiolabel.TabIndex = 10;
+            // 
+            // filterpanel
+            // 
+            this.filterpanel.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.filterpanel.Controls.Add(this.ratiolabel2);
+            this.filterpanel.Controls.Add(this.ratiolabel);
+            this.filterpanel.Controls.Add(this.filterlabel3);
+            this.filterpanel.Controls.Add(this.misdadenlabel);
+            this.filterpanel.Controls.Add(this.inwonerlabel);
+            this.filterpanel.Controls.Add(this.jaarfilter);
+            this.filterpanel.Controls.Add(this.buurtfilter);
+            this.filterpanel.Controls.Add(this.menubutton);
+            this.filterpanel.Location = new System.Drawing.Point(0, 0);
+            this.filterpanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.filterpanel.Name = "filterpanel";
+            this.filterpanel.Size = new System.Drawing.Size(250, 555);
+            this.filterpanel.TabIndex = 3;
+            // 
+            // ratiolabel2
+            // 
+            this.ratiolabel2.AutoSize = true;
+            this.ratiolabel2.BackColor = System.Drawing.SystemColors.Control;
+            this.ratiolabel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ratiolabel2.Location = new System.Drawing.Point(80, 420);
+            this.ratiolabel2.Name = "ratiolabel2";
+            this.ratiolabel2.Size = new System.Drawing.Size(80, 38);
+            this.ratiolabel2.TabIndex = 11;
+            this.ratiolabel2.Text = "ratio";
             // 
             // Datavisualisatie3
             // 
@@ -274,15 +290,16 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Button menubutton;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart3;
-        private System.Windows.Forms.Panel filterpanel;
+        private System.Windows.Forms.Label deelvraag3;
+        private System.Windows.Forms.Button menubutton;
         private System.Windows.Forms.ComboBox buurtfilter;
         private System.Windows.Forms.ComboBox jaarfilter;
-        private System.Windows.Forms.Label filterlabel3;
-        private System.Windows.Forms.Label misdadenlabel;
         private System.Windows.Forms.Label inwonerlabel;
-        private System.Windows.Forms.Label deelvraag3;
+        private System.Windows.Forms.Label misdadenlabel;
+        private System.Windows.Forms.Label filterlabel3;
+        private System.Windows.Forms.Label ratiolabel;
+        private System.Windows.Forms.Panel filterpanel;
+        private System.Windows.Forms.Label ratiolabel2;
     }
 }

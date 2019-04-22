@@ -37,11 +37,14 @@ namespace project3her
 
             chart3.Series["Misdaden"].YValueMembers = "count1";
             chart3.Series["Populatie"].YValueMembers = "count2";
+            chart3.Series["Misdaden"].IsValueShownAsLabel = true;
+            chart3.Series["Populatie"].IsValueShownAsLabel = true;
 
+            chart3.Titles.Add("Aantal misdaden tegenover populatie per buurt");
             chart3.Titles.Add("Alle Buurten");
             chart3.Titles.Add("2011");
-
-            //ratiotext.Text = (5.0 / 20.0).ToString();
+            ratiolabel2.Text = "";
+            //Ratio(query);
         }
         private static DataTable GetData(string query)
         {
@@ -246,5 +249,32 @@ namespace project3her
                 chart3.Titles.Add(jaarfilter.Text.ToString());
             }
         }
+
+        //private void Ratio(string ratio)
+        //{
+        //    string server = "localhost";
+        //    string database = "project3";
+        //    string uid = "project3";
+        //    string password = "project3";
+        //    string constr = "SERVER=" + server + ";" + "DATABASE=" + database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";";
+
+        //    MySqlConnection sqlConn = new MySqlConnection();
+        //    MySqlCommand sqlCmd = new MySqlCommand();
+        //    sqlConn.ConnectionString = constr;
+        //    sqlCmd.CommandText = ratio;
+        //    sqlCmd.CommandType = CommandType.Text;
+        //    sqlConn.Open();
+        //    sqlCmd.Connection = sqlConn;
+        //    MySqlDataReader reader = sqlCmd.ExecuteReader();
+
+        //    double pop = double.Parse("count2");
+        //    double mis = double.Parse("count1");
+        //    double result = pop / mis;
+        //    ratiolabel2.Text = result.ToString();
+
+        //    reader.Close();
+        //    sqlConn.Close();
+
+        //}
     }
 }
