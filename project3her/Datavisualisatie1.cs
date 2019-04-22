@@ -70,29 +70,45 @@ namespace project3her
             chart1.Titles.Clear();
         }
 
-        private void fillChartValues(string query, string chartTitle = "Datavisualization")
+        private void fillChart(string query, bool percentage)
         {
             DataTable dt = GetData(query);
 
             chart1.DataSource = dt;
 
+            double count1 = Convert.ToDouble(dt.Rows[0]["count1"]);
+            double count2 = Convert.ToDouble(dt.Rows[0]["count2"]);
+
+            double total;
+            double part;
+            string result;
+
+            if (count1 == 0) // hidden trick to avoid division by 0
+            {
+                total = 0;
+                part = 0;
+            }
+            else
+            {
+                total = (count1 / count1) * 100;
+                part = (count2 / count1) * 100;
+            }
+
             chart1.Series["Totaal misdaden"].YValueMembers = "count1";
             chart1.Series["Fietsdiefstal"].YValueMembers = "count2";
 
-            chart1.Titles.Add(chartTitle);
-        }
+            if (percentage)
+            {
+                result = Convert.ToString(part) + "%.\n\n Waarden: " + Convert.ToString(count2) +
+                " fietsdiefstallen, " + Convert.ToString(count1) + " totale misdaden.";
+            }
+            else
+            {
+                result = Convert.ToString(count2) + " fietsdiefstallen, " + Convert.ToString(count1) +
+                " totale misdaden.";
+            }
 
-        private void fillChartPercentages(string query, string chartTitle = "Datavisualization")
-        {
-            DataTable dt = GetData(query);
-
-            chart1.DataSource = dt;
-
-            // do something with percentage calculation!
-            chart1.Series["Totaal misdaden"].YValueMembers = "count1";
-            chart1.Series["Fietsdiefstal"].YValueMembers = "count2";
-
-            chart1.Titles.Add(chartTitle);
+            chart1.Titles.Add(result);
         }
 
         private void fillCombobox1() // Waarden - selector
@@ -108,8 +124,10 @@ namespace project3her
             //
             // Make an apart database connection, 
             // because this doesn't use DataTable, 
-            // like GetData() does
-            //
+            // like GetData() does.
+            // Unnecessary to make another function for that,
+            // because it is never used for another thing.
+            // 
             // =======================================
 
             string server = "localhost";
@@ -145,61 +163,36 @@ namespace project3her
             reader.Close();
             sqlConn.Close();
         }
-
+        
         private void checkCheckboxes()
         {
             clearChart();
+            bool percentage = false;
 
-            if (comboBox1.Text.ToString() == "Waarden")
+            if (comboBox1.Text.ToString() != "Waarden")
+                percentage = true;
+
+            if (comboBox2.Text.ToString() == "All")
             {
-                if (comboBox2.Text.ToString() == "All")
-                {
-                    fillChartValues
-                    (
-                        "SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011) + " +
-                        "(SELECT COUNT(Voorval_nummer)FROM fietsdiefstal) AS count1, " +
-                        "(SELECT COUNT(Voorval_nummer)FROM fietsdiefstal) AS count2", 
-                        "Aantal fietsendiefstallen en alle diefstallen totaal"
-                    );
-                }
-                else if (comboBox2.Text.ToString() != "All")
-                {
-                    fillChartValues
-                    (
-                        "SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011 WHERE BUURT LIKE'%" +
-                        comboBox2.Text.ToString() + "%') + (SELECT COUNT(Voorval_nummer)FROM fietsdiefstal " +
-                        "WHERE BUURT LIKE'%" + comboBox2.Text.ToString() + "%') AS count1, " +
-                        "(SELECT COUNT(Voorval_nummer)FROM fietsdiefstal WHERE BUURT LIKE'%" +
-                        comboBox2.Text.ToString() + "%') AS count2",
-                        "Aantal fietsendiefstallen en alle diefstallen totaal, per buurt"
-                    );
-                }
+                fillChart
+                (
+                    "SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011) + " +
+                    "(SELECT COUNT(Voorval_nummer)FROM bikebike_theft) AS count1, " +
+                    "(SELECT COUNT(Voorval_nummer)FROM bikebike_theft) AS count2",
+                    percentage
+                );
             }
-
-            if (comboBox1.Text.ToString() == "Percentages")
+            else
             {
-                if (comboBox2.Text.ToString() == "All")
-                {
-                    fillChartPercentages
-                    (
-                        "SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011) + " +
-                        "(SELECT COUNT(Voorval_nummer)FROM fietsdiefstal) AS count1, " +
-                        "(SELECT COUNT(Voorval_nummer)FROM fietsdiefstal) AS count2", 
-                        "Aantal fietsendiefstallen en alle diefstallen totaal"
-                    );
-                }
-                else if (comboBox2.Text.ToString() != "All")
-                {
-                    fillChartPercentages
-                    (
-                        "SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011 WHERE BUURT LIKE'%" +
-                        comboBox2.Text.ToString() + "%') + (SELECT COUNT(Voorval_nummer)FROM fietsdiefstal " +
-                        "WHERE BUURT LIKE'%" + comboBox2.Text.ToString() + "%') AS count1, " +
-                        "(SELECT COUNT(Voorval_nummer)FROM fietsdiefstal WHERE BUURT LIKE'%" +
-                        comboBox2.Text.ToString() + "%') AS count2",
-                        "Aantal fietsendiefstallen en alle diefstallen totaal, per buurt"
-                    );
-                }
+                fillChart
+                (
+                    "SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011 WHERE BUURT LIKE'%" +
+                    comboBox2.Text.ToString() + "%') + (SELECT COUNT(Voorval_nummer)FROM bikebike_theft " +
+                    "WHERE BUURT LIKE'%" + comboBox2.Text.ToString() + "%') AS count1, " +
+                    "(SELECT COUNT(Voorval_nummer)FROM bikebike_theft WHERE BUURT LIKE'%" +
+                    comboBox2.Text.ToString() + "%') AS count2",
+                    percentage
+                );
             }
         }
 
@@ -207,6 +200,9 @@ namespace project3her
         // 
         // End of static functions
         // Code when user does something
+        //
+        // Just call checkCheckboxes and that will
+        // fill everything into the chart
         //
         // =======================================
 
@@ -234,35 +230,16 @@ namespace project3her
 
         private void Datavisualisatie1_Load(object sender, EventArgs e)
         {
-            fillChartValues
-            (
-                "SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011) + " +
-                "(SELECT COUNT(Voorval_nummer)FROM fietsdiefstal) AS count1, " +
-                "(SELECT COUNT(Voorval_nummer)FROM fietsdiefstal) AS count2", 
-                "Diefstal"
-            );
-
             fillCombobox1();
             fillCombobox2();
         }
-
 
         // =======================================
         //
         // END OF PROGRAM
         //
-        // =======================================
-
-
-
-
-
-
-
-        // =======================================
-        //
         // The rest does nothing right now! 
-        // Documentation here, so we are able to find stuff back.
+        // Label documentation here, so we are able to find stuff back.
         //
         // =======================================
 
