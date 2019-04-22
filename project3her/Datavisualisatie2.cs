@@ -36,16 +36,18 @@ namespace project3her
             chart1.DataSource = dt;
             chart1.Series["Straatroof"].YValueMembers = "count1";
             chart1.Series["Fietsdiefstal"].YValueMembers = "count2";
-            chart1.Titles.Add("Aantal diefstallen en straatroven");
+            
             chart1.Series["Straatroof"].IsValueShownAsLabel = true;
             chart1.Series["Fietsdiefstal"].IsValueShownAsLabel = true;
             chart1.ChartAreas[0].AxisX.LabelStyle.Format = " ";
-            
+
             
 
             FillCB1();
             FillCB2();
             FillCB3();
+
+            
         }
 
         private static DataTable GetData(string query)
@@ -70,6 +72,12 @@ namespace project3her
 
         private void comboBoxJaar_SelectedIndexChanged(object sender, EventArgs e)
         {
+            chart1.Titles.Clear();
+            chart1.Titles.Add("Aantal diefstallen en straatroven");
+            chart1.Titles.Add(comboBoxDag.Text.ToString());
+            chart1.Titles.Add(comboDagdeel.Text.ToString());
+            chart1.Titles.Add(comboBoxBuurt.Text.ToString());
+
             if (comboBoxDag.Text.ToString() == "All" && comboDagdeel.Text.ToString() == "All" && comboBoxBuurt.Text.ToString() == "All")
             {
                 chart1.Series["Straatroof"].Points.Clear();
@@ -190,6 +198,12 @@ namespace project3her
 
         private void comboDagdeel_SelectedIndexChanged(object sender, EventArgs e)
         {
+            chart1.Titles.Clear();
+            chart1.Titles.Add("Aantal diefstallen en straatroven");
+            chart1.Titles.Add(comboBoxDag.Text.ToString());
+            chart1.Titles.Add(comboDagdeel.Text.ToString());
+            chart1.Titles.Add(comboBoxBuurt.Text.ToString());
+
             if (comboBoxDag.Text.ToString() == "All" && comboDagdeel.Text.ToString() == "All" && comboBoxBuurt.Text.ToString() == "All")
             {
                 chart1.Series["Straatroof"].Points.Clear();
@@ -309,6 +323,12 @@ namespace project3her
 
         private void comboBoxBuurt_SelectedIndexChanged(object sender, EventArgs e)
         {
+            chart1.Titles.Clear();
+            chart1.Titles.Add("Aantal diefstallen en straatroven");
+            chart1.Titles.Add(comboBoxDag.Text.ToString());
+            chart1.Titles.Add(comboDagdeel.Text.ToString());
+            chart1.Titles.Add(comboBoxBuurt.Text.ToString());
+
             if (comboBoxDag.Text.ToString() == "All" && comboDagdeel.Text.ToString() == "All" && comboBoxBuurt.Text.ToString()=="All")
             {
                 chart1.Series["Straatroof"].Points.Clear();
