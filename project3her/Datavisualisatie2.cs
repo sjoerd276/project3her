@@ -36,18 +36,18 @@ namespace project3her
             chart1.DataSource = dt;
             chart1.Series["Straatroof"].YValueMembers = "count1";
             chart1.Series["Fietsdiefstal"].YValueMembers = "count2";
-            
+
             chart1.Series["Straatroof"].IsValueShownAsLabel = true;
             chart1.Series["Fietsdiefstal"].IsValueShownAsLabel = true;
             chart1.ChartAreas[0].AxisX.LabelStyle.Format = " ";
 
-            
+
 
             FillCB1();
             FillCB2();
             FillCB3();
 
-            
+
         }
 
         private static DataTable GetData(string query)
@@ -64,7 +64,7 @@ namespace project3her
                 {
                     DataTable dt = new DataTable();
                     sda.Fill(dt);
-                    
+
                     return dt;
                 }
             }
@@ -73,12 +73,12 @@ namespace project3her
         private void comboBoxJaar_SelectedIndexChanged(object sender, EventArgs e)
         {
             chart1.Titles.Clear();
-            chart1.Titles.Add("Aantal diefstallen en straatroven");
+            chart1.Titles.Add("Aantal diefstallen en straatroven in 2011 en 2012");
             chart1.Titles.Add(comboBoxDag.Text.ToString());
             chart1.Titles.Add(comboDagdeel.Text.ToString());
             chart1.Titles.Add(comboBoxBuurt.Text.ToString());
 
-            if (comboBoxDag.Text.ToString() == "All" && comboDagdeel.Text.ToString() == "All" && comboBoxBuurt.Text.ToString() == "All")
+            if (comboBoxDag.Text.ToString() == "Alle dagen" && comboDagdeel.Text.ToString() == "Alle dagdelen" && comboBoxBuurt.Text.ToString() == "Alle buurten")
             {
                 chart1.Series["Straatroof"].Points.Clear();
                 chart1.Series["Fietsdiefstal"].Points.Clear();
@@ -91,133 +91,7 @@ namespace project3her
                 chart1.Series["Fietsdiefstal"].YValueMembers = "count2";
             }
 
-            if (comboBoxDag.Text.ToString() != "All" && comboDagdeel.Text.ToString() != "All" && comboBoxBuurt.Text.ToString() != "All")
-
-            {
-                chart1.Series["Straatroof"].Points.Clear();
-                chart1.Series["Fietsdiefstal"].Points.Clear();
-
-                string query = "SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011 WHERE dagsoort ='" + comboBoxDag.Text.ToString() + "' AND dagdeel ='" + comboDagdeel.Text.ToString() + "' AND Buurt LIKE'%" + comboBoxBuurt.Text.ToString() + "%') AS count1,(SELECT COUNT(Voorval_nummer)FROM fietsdiefstal WHERE Begin_dagsoort ='" + comboBoxDag.Text.ToString() + "'AND Gemiddelde_dagdeel ='" + comboDagdeel.Text.ToString() + "' AND Buurt LIKE'%" + comboBoxBuurt.Text.ToString() + "%') AS count2 FROM dual";
-                DataTable dt = GetData(query);
-
-                chart1.DataSource = dt;
-                chart1.Series["Straatroof"].YValueMembers = "count1";
-                chart1.Series["Fietsdiefstal"].YValueMembers = "count2";
-
-            }
-
-
-
-            if (comboBoxDag.Text.ToString() == "All" && comboDagdeel.Text.ToString() == "All" && comboBoxBuurt.Text.ToString() != "All")
-            {
-                chart1.Series["Straatroof"].Points.Clear();
-                chart1.Series["Fietsdiefstal"].Points.Clear();
-
-                string query = "SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011 WHERE Buurt LIKE'%" + comboBoxBuurt.Text.ToString() + "%') AS count1,(SELECT COUNT(Voorval_nummer)FROM fietsdiefstal WHERE Buurt LIKE'%" + comboBoxBuurt.Text.ToString() + "%') AS count2 FROM dual";
-                DataTable dt = GetData(query);
-
-                chart1.DataSource = dt;
-                chart1.Series["Straatroof"].YValueMembers = "count1";
-                chart1.Series["Fietsdiefstal"].YValueMembers = "count2";
-
-            }
-
-            if (comboBoxDag.Text.ToString() == "All" && comboDagdeel.Text.ToString() != "All" && comboBoxBuurt.Text.ToString() != "All")
-            {
-                chart1.Series["Straatroof"].Points.Clear();
-                chart1.Series["Fietsdiefstal"].Points.Clear();
-
-                string query = "SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011 WHERE dagdeel ='" + comboDagdeel.Text.ToString() + "' AND Buurt LIKE'%" + comboBoxBuurt.Text.ToString() + "%') AS count1,(SELECT COUNT(Voorval_nummer)FROM fietsdiefstal WHERE Gemiddelde_dagdeel ='" + comboDagdeel.Text.ToString() + "' AND Buurt LIKE'%" + comboBoxBuurt.Text.ToString() + "%') AS count2 FROM dual";
-                DataTable dt = GetData(query);
-
-                chart1.DataSource = dt;
-                chart1.Series["Straatroof"].YValueMembers = "count1";
-                chart1.Series["Fietsdiefstal"].YValueMembers = "count2";
-
-            }
-
-
-            if (comboBoxDag.Text.ToString() == "All" && comboDagdeel.Text.ToString() != "All" && comboBoxBuurt.Text.ToString() == "All")
-            {
-                chart1.Series["Straatroof"].Points.Clear();
-                chart1.Series["Fietsdiefstal"].Points.Clear();
-
-                string query = "SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011 WHERE dagdeel ='" + comboDagdeel.Text.ToString() + "') AS count1,(SELECT COUNT(Voorval_nummer)FROM fietsdiefstal WHERE Gemiddelde_dagdeel ='" + comboDagdeel.Text.ToString() + "') AS count2 FROM dual";
-
-                DataTable dt = GetData(query);
-
-                chart1.DataSource = dt;
-                chart1.Series["Straatroof"].YValueMembers = "count1";
-                chart1.Series["Fietsdiefstal"].YValueMembers = "count2";
-            }
-
-            if (comboBoxDag.Text.ToString() != "All" && comboDagdeel.Text.ToString() != "All" && comboBoxBuurt.Text.ToString() == "All")
-            {
-                chart1.Series["Straatroof"].Points.Clear();
-                chart1.Series["Fietsdiefstal"].Points.Clear();
-
-                string query = "SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011 WHERE dagsoort ='" + comboBoxDag.Text.ToString() + "' AND dagdeel ='" + comboDagdeel.Text.ToString() + "') AS count1,(SELECT COUNT(Voorval_nummer)FROM fietsdiefstal WHERE Begin_dagsoort ='" + comboBoxDag.Text.ToString() + "'AND Gemiddelde_dagdeel ='" + comboDagdeel.Text.ToString() + "') AS count2 FROM dual";
-
-                DataTable dt = GetData(query);
-
-                chart1.DataSource = dt;
-                chart1.Series["Straatroof"].YValueMembers = "count1";
-                chart1.Series["Fietsdiefstal"].YValueMembers = "count2";
-            }
-
-            if (comboBoxDag.Text.ToString() != "All" && comboDagdeel.Text.ToString() == "All" && comboBoxBuurt.Text.ToString() == "All")
-            {
-                chart1.Series["Straatroof"].Points.Clear();
-                chart1.Series["Fietsdiefstal"].Points.Clear();
-
-                string query = "SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011 WHERE dagsoort ='" + comboBoxDag.Text.ToString() + "') AS count1,(SELECT COUNT(Voorval_nummer)FROM fietsdiefstal WHERE Begin_dagsoort ='" + comboBoxDag.Text.ToString() + "') AS count2 FROM dual";
-
-                DataTable dt = GetData(query);
-
-                chart1.DataSource = dt;
-                chart1.Series["Straatroof"].YValueMembers = "count1";
-                chart1.Series["Fietsdiefstal"].YValueMembers = "count2";
-            }
-
-
-
-            
-            if (comboBoxDag.Text.ToString() != "All" && comboDagdeel.Text.ToString() == "All" && comboBoxBuurt.Text.ToString() != "All")
-            {
-                chart1.Series["Straatroof"].Points.Clear();
-                chart1.Series["Fietsdiefstal"].Points.Clear();
-
-                string query = "SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011 WHERE dagsoort ='" + comboBoxDag.Text.ToString() + "' AND Buurt LIKE'%" + comboBoxBuurt.Text.ToString() + "%') AS count1,(SELECT COUNT(Voorval_nummer)FROM fietsdiefstal WHERE Begin_dagsoort ='" + comboBoxDag.Text.ToString() + "'AND Buurt LIKE'%" + comboBoxBuurt.Text.ToString() + "%') AS count2 FROM dual";
-                DataTable dt = GetData(query);
-
-                chart1.DataSource = dt;
-                chart1.Series["Straatroof"].YValueMembers = "count1";
-                chart1.Series["Fietsdiefstal"].YValueMembers = "count2";
-            }
-        }
-
-        private void comboDagdeel_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            chart1.Titles.Clear();
-            chart1.Titles.Add("Aantal diefstallen en straatroven");
-            chart1.Titles.Add(comboBoxDag.Text.ToString());
-            chart1.Titles.Add(comboDagdeel.Text.ToString());
-            chart1.Titles.Add(comboBoxBuurt.Text.ToString());
-
-            if (comboBoxDag.Text.ToString() == "All" && comboDagdeel.Text.ToString() == "All" && comboBoxBuurt.Text.ToString() == "All")
-            {
-                chart1.Series["Straatroof"].Points.Clear();
-                chart1.Series["Fietsdiefstal"].Points.Clear();
-
-                string query = "SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011) AS count1,(SELECT COUNT(Voorval_nummer)FROM fietsdiefstal) AS count2 FROM dual";
-                DataTable dt = GetData(query);
-
-                chart1.DataSource = dt;
-                chart1.Series["Straatroof"].YValueMembers = "count1";
-                chart1.Series["Fietsdiefstal"].YValueMembers = "count2";
-            }
-
-            if (comboBoxDag.Text.ToString() != "All" && comboDagdeel.Text.ToString() != "All" && comboBoxBuurt.Text.ToString() != "All")
+            if (comboBoxDag.Text.ToString() != "Alle dagen" && comboDagdeel.Text.ToString() != "Alle dagdelen" && comboBoxBuurt.Text.ToString() != "Alle buurten")
 
             {
                 chart1.Series["Straatroof"].Points.Clear();
@@ -235,7 +109,7 @@ namespace project3her
 
 
 
-            if (comboBoxDag.Text.ToString() == "All" && comboDagdeel.Text.ToString() == "All" && comboBoxBuurt.Text.ToString() != "All")
+            if (comboBoxDag.Text.ToString() == "Alle dagen" && comboDagdeel.Text.ToString() == "Alle dagdelen" && comboBoxBuurt.Text.ToString() != "Alle buurten")
             {
                 chart1.Series["Straatroof"].Points.Clear();
                 chart1.Series["Fietsdiefstal"].Points.Clear();
@@ -249,7 +123,7 @@ namespace project3her
 
             }
 
-            if (comboBoxDag.Text.ToString() == "All" && comboDagdeel.Text.ToString() != "All" && comboBoxBuurt.Text.ToString() != "All")
+            if (comboBoxDag.Text.ToString() == "Alle dagen" && comboDagdeel.Text.ToString() != "Alle dagdelen" && comboBoxBuurt.Text.ToString() != "Alle buurten")
             {
                 chart1.Series["Straatroof"].Points.Clear();
                 chart1.Series["Fietsdiefstal"].Points.Clear();
@@ -264,7 +138,7 @@ namespace project3her
             }
 
 
-            if (comboBoxDag.Text.ToString() == "All" && comboDagdeel.Text.ToString() != "All" && comboBoxBuurt.Text.ToString() == "All")
+            if (comboBoxDag.Text.ToString() == "Alle dagen" && comboDagdeel.Text.ToString() != "Alle dagdelen" && comboBoxBuurt.Text.ToString() == "Alle buurten")
             {
                 chart1.Series["Straatroof"].Points.Clear();
                 chart1.Series["Fietsdiefstal"].Points.Clear();
@@ -278,7 +152,7 @@ namespace project3her
                 chart1.Series["Fietsdiefstal"].YValueMembers = "count2";
             }
 
-            if (comboBoxDag.Text.ToString() != "All" && comboDagdeel.Text.ToString() != "All" && comboBoxBuurt.Text.ToString() == "All")
+            if (comboBoxDag.Text.ToString() != "Alle dagen" && comboDagdeel.Text.ToString() != "Alle dagdelen" && comboBoxBuurt.Text.ToString() == "Alle buurten")
             {
                 chart1.Series["Straatroof"].Points.Clear();
                 chart1.Series["Fietsdiefstal"].Points.Clear();
@@ -292,7 +166,7 @@ namespace project3her
                 chart1.Series["Fietsdiefstal"].YValueMembers = "count2";
             }
 
-            if (comboBoxDag.Text.ToString() != "All" && comboDagdeel.Text.ToString() == "All" && comboBoxBuurt.Text.ToString() == "All")
+            if (comboBoxDag.Text.ToString() != "Alle dagen" && comboDagdeel.Text.ToString() == "Alle dagdelen" && comboBoxBuurt.Text.ToString() == "Alle buurten")
             {
                 chart1.Series["Straatroof"].Points.Clear();
                 chart1.Series["Fietsdiefstal"].Points.Clear();
@@ -306,8 +180,136 @@ namespace project3her
                 chart1.Series["Fietsdiefstal"].YValueMembers = "count2";
             }
 
-            
-            if (comboBoxDag.Text.ToString() != "All" && comboDagdeel.Text.ToString() == "All" && comboBoxBuurt.Text.ToString() != "All")
+
+
+            if (comboBoxDag.Text.ToString() != "Alle dagen" && comboDagdeel.Text.ToString() == "Alle dagdelen" && comboBoxBuurt.Text.ToString() != "Alle buurten")
+            {
+                chart1.Series["Straatroof"].Points.Clear();
+                chart1.Series["Fietsdiefstal"].Points.Clear();
+
+                string query = "SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011 WHERE dagsoort ='" + comboBoxDag.Text.ToString() + "' AND Buurt LIKE'%" + comboBoxBuurt.Text.ToString() + "%') AS count1,(SELECT COUNT(Voorval_nummer)FROM fietsdiefstal WHERE Begin_dagsoort ='" + comboBoxDag.Text.ToString() + "'AND Buurt LIKE'%" + comboBoxBuurt.Text.ToString() + "%') AS count2 FROM dual";
+                DataTable dt = GetData(query);
+
+                chart1.DataSource = dt;
+                chart1.Series["Straatroof"].YValueMembers = "count1";
+                chart1.Series["Fietsdiefstal"].YValueMembers = "count2";
+            }
+        }
+
+        private void comboDagdeel_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            chart1.Titles.Clear();
+            chart1.Titles.Add("Aantal diefstallen en straatroven in 2011 en 2012");
+            chart1.Titles.Add(comboBoxDag.Text.ToString());
+            chart1.Titles.Add(comboDagdeel.Text.ToString());
+            chart1.Titles.Add(comboBoxBuurt.Text.ToString());
+
+            if (comboBoxDag.Text.ToString() == "Alle dagen" && comboDagdeel.Text.ToString() == "Alle dagdelen" && comboBoxBuurt.Text.ToString() == "Alle buurten")
+            {
+                chart1.Series["Straatroof"].Points.Clear();
+                chart1.Series["Fietsdiefstal"].Points.Clear();
+
+                string query = "SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011) AS count1,(SELECT COUNT(Voorval_nummer)FROM fietsdiefstal) AS count2 FROM dual";
+                DataTable dt = GetData(query);
+
+                chart1.DataSource = dt;
+                chart1.Series["Straatroof"].YValueMembers = "count1";
+                chart1.Series["Fietsdiefstal"].YValueMembers = "count2";
+            }
+
+            if (comboBoxDag.Text.ToString() != "Alle dagen" && comboDagdeel.Text.ToString() != "Alle dagdelen" && comboBoxBuurt.Text.ToString() != "Alle buurten")
+
+            {
+                chart1.Series["Straatroof"].Points.Clear();
+                chart1.Series["Fietsdiefstal"].Points.Clear();
+
+                string query = "SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011 WHERE dagsoort ='" + comboBoxDag.Text.ToString() + "' AND dagdeel ='" + comboDagdeel.Text.ToString() + "' AND Buurt LIKE'%" + comboBoxBuurt.Text.ToString() + "%') AS count1,(SELECT COUNT(Voorval_nummer)FROM fietsdiefstal WHERE Begin_dagsoort ='" + comboBoxDag.Text.ToString() + "'AND " +
+                    "Gemiddelde_dagdeel ='" + comboDagdeel.Text.ToString() + "' AND Buurt LIKE'%" + comboBoxBuurt.Text.ToString() + "%') AS count2 FROM dual";
+                DataTable dt = GetData(query);
+
+                chart1.DataSource = dt;
+                chart1.Series["Straatroof"].YValueMembers = "count1";
+                chart1.Series["Fietsdiefstal"].YValueMembers = "count2";
+
+            }
+
+
+
+            if (comboBoxDag.Text.ToString() == "Alle dagen" && comboDagdeel.Text.ToString() == "Alle dagdelen" && comboBoxBuurt.Text.ToString() != "Alle buurten")
+            {
+                chart1.Series["Straatroof"].Points.Clear();
+                chart1.Series["Fietsdiefstal"].Points.Clear();
+
+                string query = "SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011 WHERE Buurt LIKE'%" + comboBoxBuurt.Text.ToString() + "%') AS count1,(SELECT COUNT(Voorval_nummer)FROM fietsdiefstal WHERE Buurt LIKE'%" + comboBoxBuurt.Text.ToString() + "%') AS count2 FROM dual";
+                DataTable dt = GetData(query);
+
+                chart1.DataSource = dt;
+                chart1.Series["Straatroof"].YValueMembers = "count1";
+                chart1.Series["Fietsdiefstal"].YValueMembers = "count2";
+
+            }
+
+            if (comboBoxDag.Text.ToString() == "Alle dagen" && comboDagdeel.Text.ToString() != "Alle dagdelen" && comboBoxBuurt.Text.ToString() != "Alle buurten")
+            {
+                chart1.Series["Straatroof"].Points.Clear();
+                chart1.Series["Fietsdiefstal"].Points.Clear();
+
+                string query = "SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011 WHERE dagdeel ='" + comboDagdeel.Text.ToString() + "' AND Buurt LIKE'%" + comboBoxBuurt.Text.ToString() + "%') AS count1,(SELECT COUNT(Voorval_nummer)FROM fietsdiefstal WHERE Gemiddelde_dagdeel ='" + comboDagdeel.Text.ToString() + "' AND Buurt LIKE'%" + comboBoxBuurt.Text.ToString() + "%') AS count2 FROM dual";
+                DataTable dt = GetData(query);
+
+                chart1.DataSource = dt;
+                chart1.Series["Straatroof"].YValueMembers = "count1";
+                chart1.Series["Fietsdiefstal"].YValueMembers = "count2";
+
+            }
+
+
+            if (comboBoxDag.Text.ToString() == "Alle dagen" && comboDagdeel.Text.ToString() != "Alle dagdelen" && comboBoxBuurt.Text.ToString() == "Alle buurten")
+            {
+                chart1.Series["Straatroof"].Points.Clear();
+                chart1.Series["Fietsdiefstal"].Points.Clear();
+
+                string query = "SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011 WHERE dagdeel ='" + comboDagdeel.Text.ToString() + "') AS count1,(SELECT COUNT(Voorval_nummer)FROM fietsdiefstal WHERE Gemiddelde_dagdeel ='" + comboDagdeel.Text.ToString() + "') AS count2 FROM dual";
+
+                DataTable dt = GetData(query);
+
+                chart1.DataSource = dt;
+                chart1.Series["Straatroof"].YValueMembers = "count1";
+                chart1.Series["Fietsdiefstal"].YValueMembers = "count2";
+            }
+
+            if (comboBoxDag.Text.ToString() != "Alle dagen" && comboDagdeel.Text.ToString() != "Alle dagdelen" && comboBoxBuurt.Text.ToString() == "Alle buurten")
+            {
+                chart1.Series["Straatroof"].Points.Clear();
+                chart1.Series["Fietsdiefstal"].Points.Clear();
+
+                string query = "SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011 WHERE dagsoort ='" + comboBoxDag.Text.ToString() + "' AND dagdeel ='" + comboDagdeel.Text.ToString() + "') AS count1,(SELECT COUNT(Voorval_nummer)FROM fietsdiefstal WHERE Begin_dagsoort ='" + comboBoxDag.Text.ToString() + "'AND Gemiddelde_dagdeel ='" + comboDagdeel.Text.ToString() + "') AS count2 FROM dual";
+
+                DataTable dt = GetData(query);
+
+                chart1.DataSource = dt;
+                chart1.Series["Straatroof"].YValueMembers = "count1";
+                chart1.Series["Fietsdiefstal"].YValueMembers = "count2";
+            }
+
+            if (comboBoxDag.Text.ToString() != "Alle dagen" && comboDagdeel.Text.ToString() == "Alle dagdelen" && comboBoxBuurt.Text.ToString() == "Alle buurten")
+            {
+                chart1.Series["Straatroof"].Points.Clear();
+                chart1.Series["Fietsdiefstal"].Points.Clear();
+
+                string query = "SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011 WHERE dagsoort ='" + comboBoxDag.Text.ToString() + "') AS count1,(SELECT COUNT(Voorval_nummer)FROM fietsdiefstal WHERE Begin_dagsoort ='" + comboBoxDag.Text.ToString() + "') AS count2 FROM dual";
+
+                DataTable dt = GetData(query);
+
+                chart1.DataSource = dt;
+                chart1.Series["Straatroof"].YValueMembers = "count1";
+                chart1.Series["Fietsdiefstal"].YValueMembers = "count2";
+            }
+
+
+
+            if (comboBoxDag.Text.ToString() != "Alle dagen" && comboDagdeel.Text.ToString() == "Alle dagdelen" && comboBoxBuurt.Text.ToString() != "Alle buurten")
             {
                 chart1.Series["Straatroof"].Points.Clear();
                 chart1.Series["Fietsdiefstal"].Points.Clear();
@@ -324,12 +326,13 @@ namespace project3her
         private void comboBoxBuurt_SelectedIndexChanged(object sender, EventArgs e)
         {
             chart1.Titles.Clear();
-            chart1.Titles.Add("Aantal diefstallen en straatroven");
+            chart1.Titles.Add("Aantal diefstallen en straatroven in 2011 en 2012");
             chart1.Titles.Add(comboBoxDag.Text.ToString());
             chart1.Titles.Add(comboDagdeel.Text.ToString());
             chart1.Titles.Add(comboBoxBuurt.Text.ToString());
 
-            if (comboBoxDag.Text.ToString() == "All" && comboDagdeel.Text.ToString() == "All" && comboBoxBuurt.Text.ToString()=="All")
+
+            if (comboBoxDag.Text.ToString() == "Alle dagen" && comboDagdeel.Text.ToString() == "Alle dagdelen" && comboBoxBuurt.Text.ToString() == "Alle buurten")
             {
                 chart1.Series["Straatroof"].Points.Clear();
                 chart1.Series["Fietsdiefstal"].Points.Clear();
@@ -342,7 +345,7 @@ namespace project3her
                 chart1.Series["Fietsdiefstal"].YValueMembers = "count2";
             }
 
-            if (comboBoxDag.Text.ToString() != "All" && comboDagdeel.Text.ToString() != "All" && comboBoxBuurt.Text.ToString() != "All")
+            if (comboBoxDag.Text.ToString() != "Alle dagen" && comboDagdeel.Text.ToString() != "Alle dagdelen" && comboBoxBuurt.Text.ToString() != "Alle buurten")
 
             {
                 chart1.Series["Straatroof"].Points.Clear();
@@ -360,7 +363,7 @@ namespace project3her
 
 
 
-            if (comboBoxDag.Text.ToString() == "All" && comboDagdeel.Text.ToString() == "All" && comboBoxBuurt.Text.ToString() != "All")
+            if (comboBoxDag.Text.ToString() == "Alle dagen" && comboDagdeel.Text.ToString() == "Alle dagdelen" && comboBoxBuurt.Text.ToString() != "Alle buurten")
             {
                 chart1.Series["Straatroof"].Points.Clear();
                 chart1.Series["Fietsdiefstal"].Points.Clear();
@@ -371,10 +374,10 @@ namespace project3her
                 chart1.DataSource = dt;
                 chart1.Series["Straatroof"].YValueMembers = "count1";
                 chart1.Series["Fietsdiefstal"].YValueMembers = "count2";
-                
+
             }
 
-            if (comboBoxDag.Text.ToString() == "All" && comboDagdeel.Text.ToString() != "All" && comboBoxBuurt.Text.ToString() != "All")
+            if (comboBoxDag.Text.ToString() == "Alle dagen" && comboDagdeel.Text.ToString() != "Alle dagdelen" && comboBoxBuurt.Text.ToString() != "Alle buurten")
             {
                 chart1.Series["Straatroof"].Points.Clear();
                 chart1.Series["Fietsdiefstal"].Points.Clear();
@@ -389,7 +392,7 @@ namespace project3her
             }
 
 
-            if (comboBoxDag.Text.ToString() == "All" && comboDagdeel.Text.ToString() != "All" && comboBoxBuurt.Text.ToString() == "All")
+            if (comboBoxDag.Text.ToString() == "Alle dagen" && comboDagdeel.Text.ToString() != "Alle dagdelen" && comboBoxBuurt.Text.ToString() == "Alle buurten")
             {
                 chart1.Series["Straatroof"].Points.Clear();
                 chart1.Series["Fietsdiefstal"].Points.Clear();
@@ -403,7 +406,7 @@ namespace project3her
                 chart1.Series["Fietsdiefstal"].YValueMembers = "count2";
             }
 
-            if (comboBoxDag.Text.ToString() != "All" && comboDagdeel.Text.ToString() != "All" && comboBoxBuurt.Text.ToString() == "All")
+            if (comboBoxDag.Text.ToString() != "Alle dagen" && comboDagdeel.Text.ToString() != "Alle dagdelen" && comboBoxBuurt.Text.ToString() == "Alle buurten")
             {
                 chart1.Series["Straatroof"].Points.Clear();
                 chart1.Series["Fietsdiefstal"].Points.Clear();
@@ -417,7 +420,7 @@ namespace project3her
                 chart1.Series["Fietsdiefstal"].YValueMembers = "count2";
             }
 
-            if (comboBoxDag.Text.ToString() != "All" && comboDagdeel.Text.ToString() == "All" && comboBoxBuurt.Text.ToString() == "All")
+            if (comboBoxDag.Text.ToString() != "Alle dagen" && comboDagdeel.Text.ToString() == "Alle dagdelen" && comboBoxBuurt.Text.ToString() == "Alle buurten")
             {
                 chart1.Series["Straatroof"].Points.Clear();
                 chart1.Series["Fietsdiefstal"].Points.Clear();
@@ -432,8 +435,8 @@ namespace project3her
             }
 
 
-            
-            if (comboBoxDag.Text.ToString() != "All" && comboDagdeel.Text.ToString() == "All" && comboBoxBuurt.Text.ToString() != "All")
+
+            if (comboBoxDag.Text.ToString() != "Alle dagen" && comboDagdeel.Text.ToString() == "Alle dagdelen" && comboBoxBuurt.Text.ToString() != "Alle buurten")
             {
                 chart1.Series["Straatroof"].Points.Clear();
                 chart1.Series["Fietsdiefstal"].Points.Clear();
@@ -450,7 +453,7 @@ namespace project3her
 
         private void FillCB1()
         {
-            comboBoxDag.Items.Insert(0, "All");
+            comboBoxDag.Items.Insert(0, "Alle dagen");
             comboBoxDag.Items.Insert(1, "MA");
             comboBoxDag.Items.Insert(2, "DI");
             comboBoxDag.Items.Insert(3, "WO");
@@ -463,7 +466,7 @@ namespace project3her
 
         private void FillCB2()
         {
-            comboDagdeel.Items.Insert(0, "All");
+            comboDagdeel.Items.Insert(0, "Alle dagdelen");
             comboDagdeel.Items.Insert(1, "00:00-05:59");
             comboDagdeel.Items.Insert(2, "06:00-11:59");
             comboDagdeel.Items.Insert(3, "12:00-17:59");
@@ -500,7 +503,7 @@ namespace project3her
             {
                 comboBoxBuurt.Items.Add(t);
             }
-            comboBoxBuurt.Items.Insert(0, "All");
+            comboBoxBuurt.Items.Insert(0, "Alle buurten");
             comboBoxBuurt.SelectedIndex = 0;
 
             reader.Close();
@@ -513,6 +516,6 @@ namespace project3her
 
         }
 
-        
+
     }
 }
