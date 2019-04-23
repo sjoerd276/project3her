@@ -177,8 +177,8 @@ namespace project3her
                 fillChart
                 (
                     "SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011) + " +
-                    "(SELECT COUNT(Voorval_nummer)FROM bikebike_theft) AS count1, " +
-                    "(SELECT COUNT(Voorval_nummer)FROM bikebike_theft) AS count2",
+                    "(SELECT COUNT(Voorval_nummer)FROM fietsdiefstal) AS count1, " +
+                    "(SELECT COUNT(Voorval_nummer)FROM fietsdiefstal) AS count2",
                     percentage
                 );
             }
@@ -187,9 +187,9 @@ namespace project3her
                 fillChart
                 (
                     "SELECT(SELECT COUNT(Voorval_nr)FROM straatroof_2011 WHERE BUURT LIKE'%" +
-                    comboBox2.Text.ToString() + "%') + (SELECT COUNT(Voorval_nummer)FROM bikebike_theft " +
+                    comboBox2.Text.ToString() + "%') + (SELECT COUNT(Voorval_nummer)FROM fietsdiefstal " +
                     "WHERE BUURT LIKE'%" + comboBox2.Text.ToString() + "%') AS count1, " +
-                    "(SELECT COUNT(Voorval_nummer)FROM bikebike_theft WHERE BUURT LIKE'%" +
+                    "(SELECT COUNT(Voorval_nummer)FROM fietsdiefstal WHERE BUURT LIKE'%" +
                     comboBox2.Text.ToString() + "%') AS count2",
                     percentage
                 );
